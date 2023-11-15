@@ -1,0 +1,11 @@
+composer create-project laravel/laravel ecommerce
+
+composer require maatwebsite/excel
+composer require phpoffice/phpspreadsheet
+
+phpoffice/phpspreadsheet
+composer require barryvdh/laravel-dompdf
+
+composer require intervention/image
+
+composer require stripe/stripe-php
