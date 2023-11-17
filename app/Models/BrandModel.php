@@ -12,4 +12,9 @@ class BrandModel extends Model
     protected $table = 'brands';
     protected $fillable = ['name', 'image', 'status', 'created_at', 'updated_at'];
     public $timestamps = false;
+
+    public function products()
+    {
+        return $this->hasMany(ProductModel::class, 'brand_id');
+    }
 }

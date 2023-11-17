@@ -19,21 +19,23 @@
         }
 
         @media (max-width: 767px) {
-        /* Adjust styles for smaller screens if needed */
-        .col-xl-10 {
-            height: auto;
-        }
 
-        .d-flex {
-            flex-direction: column;
-        }
+            /* Adjust styles for smaller screens if needed */
+            .col-xl-10 {
+                height: auto;
+            }
 
-        .position-absolute {
-            position: static;
+            .d-flex {
+                flex-direction: column;
+            }
+
+            .position-absolute {
+                position: static;
+            }
         }
-    }
     </style>
 
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('public/admin/assets/dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
@@ -56,6 +58,8 @@
 
     @include('web.layouts.header')
 
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+
     @yield('content')
 
     @include('web.layouts.footer')
@@ -63,6 +67,7 @@
 
     @stack('scripts')
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>  
     <script src="assets/js/vendor/jquery.js"></script>
     <script src="assets/js/vendor/waypoints.js"></script>
     <script src="assets/js/bootstrap-bundle.js"></script>

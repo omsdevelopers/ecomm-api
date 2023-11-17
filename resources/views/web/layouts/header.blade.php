@@ -445,23 +445,32 @@
 
                                         @if (auth('web')->check())
                                             <div class="dropdown">
-                                                <button class="navbar-tool ml-3"  onclick="toggleDropdown()">{{ 'hello' }},
-                                                   {{ auth('web')->user()->name }}
-                                                   <span style="margin-left: 5px;">▼</span>
+                                                <button class="navbar-tool ml-3"
+                                                    onclick="toggleDropdown()">{{ 'hello' }},
+                                                    {{ auth('web')->user()->name }}
+                                                    <span style="margin-left: 5px;">▼</span>
 
                                                 </button>
-                                             
 
-                                                   <div id="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; z-index: 1000; min-width: 200px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border: 1px solid #ccc; background-color: #fff; border-radius: 8px; overflow: hidden;">
-                                                      <!-- Dropdown content goes here -->
-                                                      <a style="display: block; padding: 15px; color: #333; text-decoration: none; transition: background-color 0.3s; border-bottom: 1px solid #eee;" href="#">{{ __('my order') }}</a>
-                                                      <a style="display: block; padding: 15px; color: #333; text-decoration: none; transition: background-color 0.3s; border-bottom: 1px solid #eee;" href="#">{{ __('my profile') }}</a>
-                                                      <div style="height: 1px; margin: 8px 0; overflow: hidden; background-color: #eee;"></div>
-                                                      <a style="display: block; padding: 15px; color: #e74c3c; text-decoration: none; transition: background-color 0.3s;" href="#">{{ __('logout') }}</a>
-                                                  </div>
+
+                                                <div id="dropdown-menu"
+                                                    style="display: none; position: absolute; top: 100%; left: 0; z-index: 1000; min-width: 200px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border: 1px solid #ccc; background-color: #fff; border-radius: 8px; overflow: hidden;">
+                                                    <!-- Dropdown content goes here -->
+                                                    <a style="display: block; padding: 15px; color: #333; text-decoration: none; transition: background-color 0.3s; border-bottom: 1px solid #eee;"
+                                                        href="#">{{ __('my order') }}</a>
+                                                    <a style="display: block; padding: 15px; color: #333; text-decoration: none; transition: background-color 0.3s; border-bottom: 1px solid #eee;"
+                                                        href="#">{{ __('my profile') }}</a>
+                                                    <div
+                                                        style="height: 1px; margin: 8px 0; overflow: hidden; background-color: #eee;">
+                                                    </div>
+                                                    <form method="POST" action="{{ route('logout') }}"
+                                                        style="display: inline;">
+                                                        @csrf
+                                                        <button type="submit"
+                                                            style="padding: 15px; color: #e74c3c; text-decoration: none; transition: background-color 0.3s; border: none; background: none; cursor: pointer;">{{ __('Logout') }}</button>
+                                                    </form>
+                                                </div>
                                             </div>
-
-                                            
                                         @else
                                             <a href="{{ route('login') }}">Login</a>
                                     <li>

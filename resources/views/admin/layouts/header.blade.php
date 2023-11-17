@@ -141,6 +141,17 @@
           </a>
         </li>
 
+        <li class="nav-item">
+          <a href="{{route('products.index')}}"
+            class="nav-link {{ request()->segment(2) === 'products' ? 'active' : '' }}">
+            <i class="fa fa-tasks" aria-hidden="true"></i>
+
+            <p>
+              Product
+            </p>
+          </a>
+        </li>
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

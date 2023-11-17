@@ -9,13 +9,19 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-    public function submit(Request $request){
-        
-        if(Auth::attempt(['email'=> $request->email, 'password'=> $request->password, 'is_admin'=>0, 'status'=>0])){
-            return redirect('/');
+    public function submit(Request $request)
+    {
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_admin' => 0, 'status' => 0])) {
+            return redirect()->route('home');
+        } else {
+            return redirect()->back()->withErrors('error', 'Please enter correct email & password');
         }
-        else{
-            return redirect()->back()->withErrors('error','Please enter correct email & password');
-        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login');
     }
 }

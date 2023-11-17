@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PageController extends Controller
 {
@@ -22,6 +23,7 @@ class PageController extends Controller
     public function register()
     {
         $data['header_title'] = "Register";
+
         return view('web.screens.register', $data);
     }
 
