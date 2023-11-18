@@ -35,6 +35,8 @@
         }
     </style>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('public/admin/assets/dist/css/adminlte.min.css') }}">
@@ -58,7 +60,7 @@
 
     @include('web.layouts.header')
 
-    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+    @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
 
     @yield('content')
 
@@ -67,7 +69,7 @@
 
     @stack('scripts')
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>  
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>
     <script src="assets/js/vendor/jquery.js"></script>
     <script src="assets/js/vendor/waypoints.js"></script>
     <script src="assets/js/bootstrap-bundle.js"></script>

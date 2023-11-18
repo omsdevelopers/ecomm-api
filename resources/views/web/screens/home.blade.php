@@ -3,7 +3,7 @@
 @section('content')
     <section class="bd-hero__area">
         <div class="hero__active swiper-container">
-       
+
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="bd-singel__hero">
@@ -411,86 +411,38 @@
                     <h2 class="bd-section__title">featured product</h2>
                 </div>
             </div>
+
             <div class="row">
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="bd-product__item text-center mb-30">
-                        <div class="bd-product__img">
-                            <img src="assets/img/product/product-11.jpg" alt="product-img">
-                        </div>
-                        <div class="bd-product__content">
-                            <h4><a href="#">organic fresh meat</a></h4>
-                            <span class="bd-product__new-price">$45.00</span>
-                        </div>
-                        <div class="bd-product__action">
-                            <a class="cart-btn" href="javascript:void(0)" data-toggle="tooltip" data-placement="top"
-                                title="Quick View" data-bs-toggle="modal"><i class="fal fa-cart-arrow-down"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Quick Shop"
-                                data-bs-toggle="modal" data-bs-target="#productmodal"><i class="fal fa-eye"></i></a>
-                            <a class="wishlist-btn" href="javascript:void(0)" data-toggle="tooltip" data-placement="top"
-                                title="Quick Wishlist" data-bs-toggle="modal"> <i class="fal fa-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="bd-product__item text-center mb-30">
-                        <div class="bd-product__img">
-                            <img src="assets/img/product/product-02.jpg" alt="product-img">
-                        </div>
-                        <div class="bd-product__content">
-                            <h4><a href="#">organic fresh milk</a></h4>
-                            <span class="bd-product__new-price">$29.00</span>
-                            <span class="bd-product__old-price"><del>$19.00</del></span>
-                        </div>
-                        <div class="bd-product__action">
-                            <a class="cart-btn" href="javascript:void(0)" data-toggle="tooltip" data-placement="top"
-                                title="Quick View" data-bs-toggle="modal"><i class="fal fa-cart-arrow-down"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Quick Shop"
-                                data-bs-toggle="modal" data-bs-target="#productmodal"><i class="fal fa-eye"></i></a>
-                            <a class="wishlist-btn" href="javascript:void(0)" data-toggle="tooltip" data-placement="top"
-                                title="Quick Wishlist" data-bs-toggle="modal"> <i class="fal fa-heart"></i></a>
+                @foreach ($products as $product)
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <div class="bd-product__item text-center ">
+                            <div class="bd-product__img">
+                                <img height="260" src="{{ asset('public/storage/images/' . $product->image) }}"
+                                    alt="product-img">
+                            </div>
+                            <div class="bd-product__content flex-fill d-flex flex-column ">
+                                <h4><a href="#">{{ $product->name }}</a></h4>
+                                <span class="bd-product__new-price">${{ $product->price }}</span>
+                            </div>
+                            <div class="bd-product__action">
+                                <a class="cart-btn" href="javascript:void(0)" data-toggle="tooltip" data-placement="top"
+                                    title="Quick View" data-bs-toggle="modal"><i class="fal fa-cart-arrow-down"></i></a>
+
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="Quick Shop"
+                                    onclick="setProductData({{ $product->toJson() }})" data-bs-toggle="modal"
+                                    data-bs-target="#productmodal"><i class="fal fa-eye"></i></a>
+
+                                <a class="wishlist-btn" href="javascript:void(0)" data-toggle="tooltip"
+                                    data-placement="top" title="Quick Wishlist" data-bs-toggle="modal"> <i
+                                        class="fal fa-heart"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="bd-product__item text-center mb-30">
-                        <div class="bd-product__img">
-                            <img src="assets/img/product/product-03.jpg" alt="product-img">
-                        </div>
-                        <div class="bd-product__content">
-                            <h4><a href="#">mikado cheese bar</a></h4>
-                            <span class="bd-product__new-price">$20.00</span>
-                        </div>
-                        <div class="bd-product__action">
-                            <a class="cart-btn" href="javascript:void(0)" data-toggle="tooltip" data-placement="top"
-                                title="Quick View" data-bs-toggle="modal"><i class="fal fa-cart-arrow-down"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Quick Shop"
-                                data-bs-toggle="modal" data-bs-target="#productmodal"><i class="fal fa-eye"></i></a>
-                            <a class="wishlist-btn" href="javascript:void(0)" data-toggle="tooltip" data-placement="top"
-                                title="Quick Wishlist" data-bs-toggle="modal"> <i class="fal fa-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="bd-product__item text-center mb-30">
-                        <div class="bd-product__img">
-                            <img src="assets/img/product/product-04.jpg" alt="product-img">
-                        </div>
-                        <div class="bd-product__content">
-                            <h4><a href="#">custard oil 500ml</a></h4>
-                            <span class="bd-product__new-price">$34.00</span>
-                            <span class="bd-product__old-price"><del>$24.00</del></span>
-                        </div>
-                        <div class="bd-product__action">
-                            <a class="cart-btn" href="javascript:void(0)" data-toggle="tooltip" data-placement="top"
-                                title="Quick View" data-bs-toggle="modal"><i class="fal fa-cart-arrow-down"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Quick Shop"
-                                data-bs-toggle="modal" data-bs-target="#productmodal"><i class="fal fa-eye"></i></a>
-                            <a class="wishlist-btn" href="javascript:void(0)" data-toggle="tooltip" data-placement="top"
-                                title="Quick Wishlist" data-bs-toggle="modal"> <i class="fal fa-heart"></i></a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
+
+
+
             <div class="row">
                 <div class="bd-product__btn mt-20 mb-30 d-flex justify-content-center">
                     <a class="bd-theme__btn-4" href="shop.html">more proudcts</a>
@@ -674,6 +626,51 @@
                 </div>
             </div>
         </div>
-        
+
     </section>
+
+    @include('web.layouts.modal')
 @endsection
+
+@push('scripts')
+    <script>
+        function setProductData(product) {
+            $.ajax({
+                type: 'GET',
+                url: '/model/' + product.id,
+                data: {
+                    "_token": "{{ csrf_token() }}", // Include CSRF token
+                },
+                success: function(response) {
+                    console.log(response)
+                    updateModalContent(response.productDetails, response.sizePriceArray);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error in AJAX call:', status, error);
+                    console.log(xhr);
+                }
+
+            });
+        }
+
+        function updateModalContent(productDetails, sizePriceArray) {
+
+            console.log('size', sizePriceArray)
+            document.getElementById('productModalTitle').innerText = productDetails.name;
+            document.getElementById('productModalPrice').innerText = '$' + productDetails.price;
+            document.getElementById('productModalImage').src = '{{ asset('public/storage/images/') }}' + '/' +
+                productDetails.image;
+
+            var sizesList = document.getElementById('sizesList');
+            sizesList.innerHTML = ''; // Clear the existing content
+
+            for (var size in sizePriceArray) {
+                var listItem = document.createElement('li');
+                listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+                listItem.innerHTML = size + '<span class="badge bg-primary rounded-pill">$' + sizePriceArray[size] +
+                    '</span>';
+                sizesList.appendChild(listItem);
+            }
+        }
+    </script>
+@endpush

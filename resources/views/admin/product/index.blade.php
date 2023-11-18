@@ -101,7 +101,20 @@
                                         <input type="file" name="image" class="form-control-file" id="image">
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="sizes">Sizes (KG and grams) and Price per KG<span
+                                                style="color:red">*</span></label>
+                                        <input type="text" name="sizes" class="form-control"
+                                            placeholder="e.g., 1.5KG:20, 500g:10, 2KG:30" required>
+                                        <small class="form-text text-muted">Enter sizes and prices separated by commas
+                                            (e.g.,
+                                            1.5KG:20, 500g:10, 2KG:30)</small>
+                                    </div>
+
                                 </div>
+
+
+
                                 <!-- /.card-body -->
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-info">Add Product</button>
@@ -124,3 +137,15 @@
 
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#sizes').select2({
+                tags: true,
+                tokenSeparators: [',', ' '],
+                placeholder: 'Add sizes and prices',
+            });
+        });
+    </script>
+@endpush

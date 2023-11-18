@@ -48,7 +48,8 @@ class ProductController extends Controller
                 'description' => $request->input('description'),
                 'category_id' => $request->input('category_id'),
                 'brand_id' => $request->input('brand_id'),
-                'image' => $imageName, // Store the image path in the database
+                'image' => $imageName, 
+                'size' => $request->input('sizes'),
             ];
 
             ProductModel::create($productData);
