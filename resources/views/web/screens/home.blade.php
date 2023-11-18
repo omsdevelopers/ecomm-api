@@ -323,84 +323,53 @@
     </section>
     <!-- Service cta area end -->
 
-    <!-- Gallery area start -->
-    <section class="bd-gallery__area gallery__overlay fix pt-120 pb-120">
-        <div class="bd-gallery__bg">
-            <img src="assets/img/bg/gallery-bg.png" alt="gallery-bg">
-        </div>
-        <div class="container">
+    <div class="mt-10">
+        <div class="fluid">
             <div class="row">
-                <div class="col-12">
-                    <div class="bd-gallery__inner p-relative">
-                        <div class="bd-section__title-wrapper mb-45">
-                            <span class="bd-sub__title">Farm Overview</span>
-                            <h2 class="bd-section__title">farm gallary</h2>
-                        </div>
-                        <!-- If we need navigation buttons -->
-                        <div class="bd-gallery__navigatin">
-                            <button class="gallery-button-prev"><i class="far fa-long-arrow-left"></i></button>
-                            <button class="gallery-button-next"><i class="far fa-long-arrow-right"></i></button>
-                        </div>
+                <div class="col-xl-2 col-md-4 col-sm-12">
+                    <div>
+                        <img src="assets/img/new/neii.png" width="600" alt="service-icon">
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="bd-gallery__wrapper">
-                        <div class="bd-gallery-active swiper-container">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="bd-gallery__item">
-                                        <div class="bd-gallery__image w-img">
-                                            <img src="assets/img/gallery/gallery-01.jpg" alt="gallery-image">
-                                        </div>
-                                        <div class="bd-gallery__content">
-                                            <h3><a href="gallery.html">farm house look</a></h3>
-                                            <p>A content farm is a company that employs large numbers.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="bd-gallery__item">
-                                        <div class="bd-gallery__image w-img">
-                                            <img src="assets/img/gallery/gallery-02.jpg" alt="gallery-image">
-                                        </div>
-                                        <div class="bd-gallery__content">
-                                            <h3><a href="gallery.html">farm house look</a></h3>
-                                            <p>A content farm is a company that employs large numbers.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="bd-gallery__item">
-                                        <div class="bd-gallery__image w-img">
-                                            <img src="assets/img/gallery/gallery-03.jpg" alt="gallery-image">
-                                        </div>
-                                        <div class="bd-gallery__content">
-                                            <h3><a href="gallery.html">farm house look</a></h3>
-                                            <p>A content farm is a company that employs large numbers.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="bd-gallery__item">
-                                        <div class="bd-gallery__image w-img">
-                                            <img src="assets/img/gallery/gallery-04.jpg" alt="gallery-image">
-                                        </div>
-                                        <div class="bd-gallery__content">
-                                            <h3><a href="gallery.html">farm house look</a></h3>
-                                            <p>A content farm is a company that employs large numbers.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                <div class="col-xl-10 col-md-8 col-sm-12"
+                    style="background-color:#f5a64a; min-height: 50vh; z-index: -1; position:relative;">
+                    <div style="text-align: left; position: absolute; left: 300px; top: 40px; width: calc(100% - 300px);">
+                        <h2 class="text-white" style="font-size: 30px;">NattuMadu Ghee</h2>
+                        <hr class="text-white" style="width: 50%;">
+                        <h2 class="text-white">$10</h2>
+                        <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                            do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                            anim id est laborum.</p>
+
+                        <div style="margin-top: 30px;">
+                            <p class="text-white">CATEGORY: Ghee</p>
+                            <p class="text-white">TAGS: Diary</p>
                         </div>
                     </div>
+
+                    <div style="width:50%; margin:auto; position:absolute; bottom:-15px; left:20%;">
+                        <button class="btn btn-dark"
+                            style="padding: 11px; width: 160px; cursor: pointer; pointer-events: auto;">ADD TO
+                            CART</button>
+                        <button class="btn btn-dark"
+                            style="padding: 9px; margin-left: 7px; cursor: pointer; pointer-events: auto;">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" style="width:30px;">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
+
             </div>
         </div>
-    </section>
-    <!-- Gallery area end -->
+    </div>
+
 
     <!-- Product area start -->
     <section class="bd-product__area pt-120 pb-90">
@@ -477,65 +446,7 @@
     </Section>
     <!-- Video area end -->
 
-    <!-- Brand area start -->
-    <div class="bd-brand__area pb-120">
-        <div class="container">
-            <div class="bd-brand__dashed">
-                <div class="bd-dashed__line"></div>
-            </div>
-            <div class="row align-items-center justify-content-between">
-                <div class="col-12">
-                    <div class="bd-brand-active swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="bd-single__brand">
-                                    <a href="#">
-                                        <img src="assets/img/brand/brand-1.png" alt="brand-img">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="bd-single__brand">
-                                    <a href="#">
-                                        <img src="assets/img/brand/brand-2.png" alt="brand-img">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="bd-single__brand">
-                                    <a href="#">
-                                        <img src="assets/img/brand/brand-3.png" alt="brand-img">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="bd-single__brand">
-                                    <a href="#">
-                                        <img src="assets/img/brand/brand-4.png" alt="brand-img">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="bd-single__brand">
-                                    <a href="#">
-                                        <img src="assets/img/brand/brand-5.png" alt="brand-img">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="bd-single__brand">
-                                    <a href="#">
-                                        <img src="assets/img/brand/brand-6.png" alt="brand-img">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Brand area end -->
+
 
     <!-- Cta area start -->
     <section class="bd-cta__area p-relative z-index-11 pt-120 pb-60" data-background="assets/img/bg/cta-bg.jpg">
