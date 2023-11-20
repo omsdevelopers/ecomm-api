@@ -472,12 +472,12 @@
 		return false;
 	});
 
-	$(".cart-plus").click(function () {
-		var $input = $(this).parent().find("input");
-		$input.val(parseInt($input.val()) + 1);
-		$input.change();
-		return false;
-	});
+	// $(".cart-plus").click(function () {
+	// 	var $input = $(this).parent().find("input");
+	// 	$input.val(parseInt($input.val()) + 1);
+	// 	$input.change();
+	// 	return false;
+	// });
 
     // Drop-btn js
     $(".btn-dropdown__link").on("click", function () {
@@ -486,42 +486,42 @@
     });
 	
 	// Cart count js
-	var cartCountValue = 0;
-	var cartCount = $('.cart-count');
-	$(cartCount).text(cartCountValue);
-	$('.cart-btn').on('click', function() {
-		var cartBtn = this;
-		var cartCountPosition = $(cartCount).offset();
-		var btnPosition = $(this).offset();
-		var leftPos =
-		cartCountPosition.left < btnPosition.left
-			? btnPosition.left - (btnPosition.left - cartCountPosition.left)
-			: cartCountPosition.left;
-		var topPos =
-		cartCountPosition.top < btnPosition.top
-			? cartCountPosition.top
-			: cartCountPosition.top;
-		$(cartBtn)
-		.append("<span class='count'>0</span>");
+	// var cartCountValue = 0;
+	// var cartCount = $('.cart-count');
+	// $(cartCount).text(cartCountValue);
+	// $('.cart-btn').on('click', function() {
+	// 	var cartBtn = this;
+	// 	var cartCountPosition = $(cartCount).offset();
+	// 	var btnPosition = $(this).offset();
+	// 	var leftPos =
+	// 	cartCountPosition.left < btnPosition.left
+	// 		? btnPosition.left - (btnPosition.left - cartCountPosition.left)
+	// 		: cartCountPosition.left;
+	// 	var topPos =
+	// 	cartCountPosition.top < btnPosition.top
+	// 		? cartCountPosition.top
+	// 		: cartCountPosition.top;
+	// 	$(cartBtn)
+	// 	.append("<span class='count'>0</span>");
 		
-		$(cartBtn).find(".count").each(function(i,count){
-		$(count).offset({
-			left: leftPos,
-			top: topPos
-		})
-		.animate(
-			{
-			opacity: 0
-			},
-			800,
-			function() {
-			$(this).remove();
-			cartCountValue++;
-			$(cartCount).text(cartCountValue);
-			}
-		);
-		}); 
-	});
+	// 	$(cartBtn).find(".count").each(function(i,count){
+	// 	$(count).offset({
+	// 		left: leftPos,
+	// 		top: topPos
+	// 	})
+	// 	.animate(
+	// 		{
+	// 		opacity: 0
+	// 		},
+	// 		800,
+	// 		function() {
+	// 		$(this).remove();
+	// 		cartCountValue++;
+	// 		$(cartCount).text(cartCountValue);
+	// 		}
+	// 	);
+	// 	}); 
+	// });
 
 	function getRndInteger(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;

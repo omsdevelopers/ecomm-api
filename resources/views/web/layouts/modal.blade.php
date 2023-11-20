@@ -51,14 +51,16 @@
                                         <div class="product-quantity-wrapper">
                                             <form action="#">
                                                 <button class="cart-minus"><i class="fa-light fa-minus"></i></button>
-                                                <input class="cart-input" type="text" value="1">
+                                                <input class="cart-input" id="" type="text" value="1">
                                                 <button class="cart-plus"><i class="fa-light fa-plus"></i></button>
                                             </form>
                                         </div>
                                     </div>
                                     <div class="product__add-cart">
-                                        <a href="javascript:void(0)" class="bd-fill__btn cart-btn"><i
-                                                class="fa-solid fa-basket-shopping"></i> Add To Cart</a>
+                                        <a href="javascript:void(0)" class="bd-fill__btn cart-btn" id="addToCartBtn"
+                                          >
+                                            <i class="fa-solid fa-basket-shopping"></i> Add To Cart
+                                        </a>
                                     </div>
                                     <div class="product__add-wish">
                                         <a href="#" class="product__add-wish-btn"><i
@@ -66,7 +68,7 @@
                                     </div>
                                 </div>
 
-                                <div class="container">
+                                <div class="container" id="sizeContainer">
                                     <h4>Sizes and Prices</h4>
                                     <ul id="sizesList" class="list-group">
                                         <!-- Sizes and prices will be dynamically added here using JavaScript -->
@@ -104,36 +106,37 @@
             </div>
         </div>
     </div>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </div>
 <!-- Add product modal area end -->
 
-{{-- @push('scripts')
+@push('scripts')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize the modal
-            var myModal = new bootstrap.Modal(document.getElementById('productmodal'));
+        function addToCart(productId, selectedSize, quantity) {
+            console.log("dd", productId, selectedSize, quantity)
 
-            // Log the modal object
-            console.log('modal', myModal);
-
-            // Add an event listener for the 'show.bs.modal' event
-            myModal._element.addEventListener('show.bs.modal', function(event) {
-                // Log the event object
-                console.log('show.bs.modal event', event);
-
-                // Extract product data from the hidden input field
-                var productData = document.getElementById('productData').value;
-                var product = JSON.parse(productData);
-
-                // Log the product data
-                console.log('Product Data:', product);
-
-                document.getElementById('productModalTitle').innerText = product.name;
-                document.getElementById('productModalPrice').innerText = '$' + product.price;
-                // Update the modal content with the product data
-                // Example: document.getElementById('productModalTitle').innerText = product.name;
-                // Add similar lines to update other modal elements
+            $.ajax({
+                type: 'GET',
+                url: '/cart/' + productId,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "size": selectedSize,
+                    "quantity": quantity
+                },
+                success: function(response) {
+                    console.log(response);
+                    // Handle the success response, update UI, etc.
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error in AJAX call:', status, error);
+                    console.log(xhr);
+                }
             });
+        }
+
+        // Click event for the "Add to Cart" button inside the modal
+        $(".cart-btn").unbind().click(function() {
+            addToCart(this);
         });
     </script>
-@endpush --}}
+@endpush

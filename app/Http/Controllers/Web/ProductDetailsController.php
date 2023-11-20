@@ -26,4 +26,5 @@ class ProductDetailsController extends Controller
 
         return response()->json(compact('productDetails', 'sizePriceArray'));
     }
+    
 }

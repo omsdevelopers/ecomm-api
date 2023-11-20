@@ -12,6 +12,8 @@ use App\Http\Controllers\Web\LoginController;
 use App\Http\Controllers\Web\RegisterController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Web\ProductDetailsController;
+use App\Http\Controllers\web\CartController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,3 +79,6 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 //model call
 Route::get('/model/{productId}', [ProductDetailsController::class, 'getProductDetails']);
+
+
+Route::get('/cart/{productId}', [CartController::class, 'addToCart']);

@@ -545,6 +545,9 @@
 
 @push('scripts')
     <script>
+        var quantity;
+        var sizeValue = undefined;
+
         function setProductData(product) {
             $.ajax({
                 type: 'GET',
@@ -553,35 +556,79 @@
                     "_token": "{{ csrf_token() }}", // Include CSRF token
                 },
                 success: function(response) {
-                    console.log(response)
+                    console.log(response);
                     updateModalContent(response.productDetails, response.sizePriceArray);
                 },
                 error: function(xhr, status, error) {
                     console.error('Error in AJAX call:', status, error);
                     console.log(xhr);
                 }
-
             });
         }
 
         function updateModalContent(productDetails, sizePriceArray) {
-
-            console.log('size', sizePriceArray)
             document.getElementById('productModalTitle').innerText = productDetails.name;
-            document.getElementById('productModalPrice').innerText = '$' + productDetails.price;
+            document.getElementById('productModalPrice').innerText = '₹' + productDetails.price;
             document.getElementById('productModalImage').src = '{{ asset('public/storage/images/') }}' + '/' +
                 productDetails.image;
 
+            var addToCartButton = document.getElementById('addToCartBtn');
+            if (addToCartButton) {
+                addToCartButton.addEventListener('click', function() {
+                    addToCart(productDetails.id, sizeValue, quantity);
+                });
+            }
+
             var sizesList = document.getElementById('sizesList');
-            sizesList.innerHTML = ''; // Clear the existing content
+            var sizeContainer = document.getElementById('sizeContainer');
+
+            sizesList.innerHTML = '';
 
             for (var size in sizePriceArray) {
                 var listItem = document.createElement('li');
-                listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
-                listItem.innerHTML = size + '<span class="badge bg-primary rounded-pill">$' + sizePriceArray[size] +
-                    '</span>';
+                listItem.className = 'list-group-item d-flex justify-content-between align-items-center mb-3';
+                listItem.innerHTML = size +
+                    '<button class="badge bg-primary cursor-pointer" ' +
+                    'style="padding: 10px 14px; font-size: 14px;"' +
+                    'onclick="updateTotalPrice(' + sizePriceArray[size] + ', ' + quantity + ')">' +
+                    '₹' + sizePriceArray[size] + '</button>';
+
                 sizesList.appendChild(listItem);
             }
+
+
+            $(".cart-plus").unbind().click(function() {
+                var $input = $(this).parent().find("input");
+                $input.val(parseInt($input.val()) + 1);
+                $input.change();
+                updateTotalPrice(productDetails.price, $input.val());
+                return false;
+            });
+
+            $(".cart-minus").unbind().click(function() {
+                var $input = $(this).parent().find("input");
+                if (parseInt($input.val()) > 1) {
+                    $input.val(parseInt($input.val()) - 1);
+                    $input.change();
+                    updateTotalPrice(productDetails.price, $input.val());
+                }
+                return false;
+            });
+
+            $(".cart-input").unbind().change(function() {
+                quantity = parseFloat($(this).val())
+                updateTotalPrice(productDetails.price, $(this).val());
+            });
+
         }
+
+        function updateTotalPrice(basePrice, selectedSize) {
+            // console.log('val', sizeValue)
+            sizeValue = basePrice;
+            var totalPrice = basePrice * quantity || basePrice;
+            console.log('total', totalPrice)
+            $("#productModalPrice").text('₹' + totalPrice.toFixed(2));
+        }
+        
     </script>
 @endpush
