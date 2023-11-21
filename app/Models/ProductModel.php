@@ -25,4 +25,9 @@ class ProductModel extends Model
      {
          return $this->belongsTo(BrandModel::class, 'brand_id');
      }
+
+     public function carts()
+    {
+        return $this->hasMany(CartModel::class, 'product_id');
+    }
 }

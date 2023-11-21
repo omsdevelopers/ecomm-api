@@ -37,6 +37,27 @@ REPLACE INTO `brands` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUE
 	(5, 'AkhilJinu', 0, NULL, NULL),
 	(6, 'Spyberrys_UI_service', 0, NULL, NULL);
 
+-- Dumping structure for table ecommerce.carts
+CREATE TABLE IF NOT EXISTS `carts` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` bigint unsigned DEFAULT NULL,
+  `product_id` bigint unsigned NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `size` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` int DEFAULT NULL,
+  `price` decimal(8,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `carts_user_id_foreign` (`user_id`),
+  KEY `carts_product_id_foreign` (`product_id`),
+  CONSTRAINT `carts_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=193 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dumping data for table ecommerce.carts: ~3 rows (approximately)
+REPLACE INTO `carts` (`id`, `user_id`, `product_id`, `name`, `size`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
+	(192, 0, 20, 'Diary', '0', 2, 1.00, '2023-11-21 20:19:31', '2023-11-21 20:19:31');
+
 -- Dumping structure for table ecommerce.category
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -83,14 +104,15 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table ecommerce.migrations: ~4 rows (approximately)
 REPLACE INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2014_10_12_000000_create_users_table', 1),
 	(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
 	(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-	(4, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+	(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+	(5, '2023_11_20_113409_create_carts_table', 2);
 
 -- Dumping structure for table ecommerce.password_reset_tokens
 CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
@@ -136,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table ecommerce.products: ~3 rows (approximately)
+-- Dumping data for table ecommerce.products: ~4 rows (approximately)
 REPLACE INTO `products` (`id`, `name`, `price`, `description`, `created_at`, `updated_at`, `category_id`, `brand_id`, `image`, `size`) VALUES
 	(17, 'Ghee', 3.00, 'New Ghee Varient', '2023-11-18 12:30:16', '2023-11-18 12:30:16', '1', '5', 'FROGkWb8c5rQmBOfVCmV.png', NULL),
 	(19, 'Milk', 2.00, 'Milk', '2023-11-18 17:04:05', '2023-11-18 17:04:05', '2', '3', 'fmA879QzFcGT1DthL56D.png', NULL),
@@ -160,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table ecommerce.users: ~13 rows (approximately)
+-- Dumping data for table ecommerce.users: ~12 rows (approximately)
 REPLACE INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `is_admin`, `status`, `is_delete`, `created_at`, `updated_at`) VALUES
 	(1, 'admin', 'admin@mail.com', '2023-10-23 11:49:15', '$2y$10$jAVevbqZ0VFE1pd5Vz3.3.uL43zpsmOsG9Woe2qd25I5uDisOdxQO', NULL, 1, 0, 0, NULL, NULL),
 	(4, 'NEW', 'admin@admin.com', NULL, '$2y$10$7LiKmtyHDVfLkrmM.K.si./G5/6E3jSV7kJm/cWzsvu2VdIBeNDyO', NULL, 1, 0, 0, '2023-10-24 18:51:16', '2023-10-24 21:12:02'),

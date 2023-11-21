@@ -130,93 +130,8 @@
 <div class="offcanvas-overlay-white"></div>
 <!-- Offcanvas area start -->
 
-<!-- Cartmini sidber start -->
-<div class="fix">
-    <div class="shoping__sidebar">
-        <div class="cartmini__wrapper">
-            <div class="cartmini__title">
-                <h4>Shopping Cart</h4>
-            </div>
-            <div class="cartmini__close">
-                <button type="button"><i class="fal fa-times"></i></button>
-            </div>
-            <div class="cartmini__widget">
-                <div class="cartmini__inner">
-                    <ul>
-                        <li>
-                            <div class="cartmini__thumb">
-                                <a href="product-details.html">
-                                    <img src="assets/img/product/quick-view/quick-view-01.png" alt="">
-                                </a>
-                            </div>
-                            <div class="cartmini__content">
-                                <h5><a href="product-details.html">sweet milk Cream</a></h5>
-                                <div class="product-quantity mt-10 mb-10">
-                                    <span class="cart-minus">-</span>
-                                    <input class="cart-input" type="text" value="1">
-                                    <span class="cart-plus">+</span>
-                                </div>
-                                <div class="product__sm-price-wrapper">
-                                    <span class="product__sm-price">$46.00</span>
-                                </div>
-                            </div>
-                            <a href="#" class="cartmini__del"><i class="fal fa-times"></i></a>
-                        </li>
-                        <li>
-                            <div class="cartmini__thumb">
-                                <a href="product-details.html">
-                                    <img src="assets/img/product/quick-view/quick-view-02.png" alt="">
-                                </a>
-                            </div>
-                            <div class="cartmini__content">
-                                <h5><a href="product-details.html">pure 1000ml milk</a></h5>
-                                <div class="product-quantity mt-10 mb-10">
-                                    <span class="cart-minus">-</span>
-                                    <input class="cart-input" type="text" value="1">
-                                    <span class="cart-plus">+</span>
-                                </div>
-                                <div class="product__sm-price-wrapper">
-                                    <span class="product__sm-price">$32.00</span>
-                                </div>
-                            </div>
-                            <a href="#" class="cartmini__del"><i class="fal fa-times"></i></a>
-                        </li>
-                        <li>
-                            <div class="cartmini__thumb">
-                                <a href="product-details.html">
-                                    <img src="assets/img/product/quick-view/quick-view-03.png" alt="">
-                                </a>
-                            </div>
-                            <div class="cartmini__content">
-                                <h5><a href="product-details.html">mikado cheese bar</a></h5>
-                                <div class="product-quantity mt-10 mb-10">
-                                    <span class="cart-minus">-</span>
-                                    <input class="cart-input" type="text" value="1">
-                                    <span class="cart-plus">+</span>
-                                </div>
-                                <div class="product__sm-price-wrapper">
-                                    <span class="product__sm-price">$62.00</span>
-                                </div>
-                            </div>
-                            <a href="product-details.html" class="cartmini__del"><i class="fal fa-times"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="cartmini__checkout">
-                    <div class="cartmini__checkout-title mb-30">
-                        <h4>Subtotal:</h4>
-                        <span>$113.00</span>
-                    </div>
-                    <div class="cartmini__checkout-btn">
-                        <a href="cart.html" class="bd-fill__btn w-100"> <span></span> view cart</a>
-                        <a href="checkout.html" class="bd-fill__btn-2 w-100"> <span></span> checkout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Cartmini sidber end -->
+@include('web.layouts.cart-sidebar')
+
 
 <!-- Added to cart message  -->
 <div class="added-to-cart">
@@ -341,7 +256,7 @@
                 <div class="col-xl-2 col-lg-1 col-md-4 col-8">
                     <div class="bd-header__right d-flex align-items-center justify-content-end">
                         <div class="bd-header__action">
-                            <div class="bd-header__action-icon">
+                            <div class="bd-header__action-icon" onclick="cart()">
                                 <button class="shoping__toggle">
                                     <img src="assets/img/icon/cart-icon.png" alt="cart-icon">
                                 </button>
@@ -364,43 +279,104 @@
 @push('scripts')
     <script>
         console.log('Script executed');
-        // Define the function in the global scope
-        window.toggleDropdown = function() {
-            var dropdown = document.getElementById("dropdown-menu");
-            console.log('hi')
-            if (dropdown.style.display === "block") {
-                dropdown.style.display = "none";
-            } else {
-                dropdown.style.display = "block";
-            }
+
+        function cart() {
+            $.ajax({
+                type: 'GET',
+                url: '/cart/',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                },
+                success: function(response) {
+                    updateCartContent(response.cartItem);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error in AJAX call:', status, error);
+                    console.log(xhr);
+                }
+            });
         }
 
-        // Close the dropdown when clicking outside
-        document.addEventListener("click", function(event) {
-            var dropdown = document.getElementById("dropdown-menu");
-            var button = document.querySelector(".navbar-tool");
-            if (event.target !== button && event.target !== dropdown) {
-                dropdown.style.display = "none";
+        function updateCartContent(cartItem) {
+            console.log(cartItem)
+            // $("#cartTitle").text(cartItem[0].name);
+            var cartMiniInner = $('.cartmini__inner ul');
+            cartMiniInner.empty(); // Clear existing items
+
+            if (!cartItem.length > 0) {
+                cartMiniInner.empty(); // Clear existing items
+                updateTotalPrice(0);
+                hideCheckoutSection();
+                return cartMiniInner.append(`<h5 style="text-align:center; margin-top:20px;">Cart is Empty</a></h5>
+`)
             }
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            var myModal = new bootstrap.Modal(document.getElementById('productmodal'));
 
 
-            myModal._element.addEventListener('show.bs.modal', function(event) {
-                var productData = document.getElementById('productData').value;
-                var product = JSON.parse(productData);
+            cartItem.forEach(function(item) {
+                var listItem = `
+                <li>
+                    <div class="cartmini__thumb">
+                        <a href="product-details.html">
+                            <img src='{{ asset('public/storage/images/') }}/${item.product.image}' alt="">
+                        </a>
+                    </div>
+                    <div class="cartmini__content">
+                        <h5><a href="product-details.html" id="cartTitle">${item.name}</a></h5>
+                        <div class="product-quantity mt-10 mb-10">
+                            <span class="cart-minus">-</span>
+                            <input class="cart-input" type="text" value="${item.quantity || 1}">
+                            <span class="cart-plus">+</span>
+                        </div>
+                        <div class="product__sm-price-wrapper">
+                            <span class="product__sm-price">₹${item.size ? item.size * (item.quantity || 1) : item.price * (item.quantity || 1)}</span>
+                        </div>
+                    </div>
+                    <a href="#" class="cartmini__del" data-item-id=${item.id}><i class="fal fa-times"></i></a>
+                </li>`;
 
-                // Update the modal content here with the product data
-                // For example, update the modal title, price, image, etc.
-                document.getElementById('productModalTitle').innerText = product.name;
-                document.getElementById('productModalPrice').innerText = '$' + product.price;
-                // Add more similar lines to update other modal elements
-
-                console.log('modal', productData)
-
+                cartMiniInner.append(listItem);
             });
-        });
+
+            var total = cartItem.reduce(function(sum, item) {
+                var itemPrice = item.size ? item.size * (item.quantity || 1) : item.price * (item.quantity || 1);
+                return sum + itemPrice;
+            }, 0);
+
+            $('.cartmini__checkout-title span').text('₹' + total.toFixed(2));
+            showCheckoutSection();
+
+            $('.cartmini__del').on('click', function(e) {
+                e.preventDefault();
+                var itemId = $(this).attr('data-item-id');
+                handleDeleteCartItem(itemId);
+            });
+        }
+
+        function handleDeleteCartItem(itemId) {
+            $.ajax({
+                type: 'GET',
+                url: '/deleteCartItem/' + itemId,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                },
+                success: function(response) {
+                    // Assuming the response contains the updated cart data
+                    updateCartContent(response.cartItem);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error in AJAX call:', status, error);
+                    console.log(xhr);
+                    // Handle error if needed
+                }
+            });
+        }
+
+        function hideCheckoutSection() {
+            $('.cartmini__checkout').hide();
+        }
+
+        function showCheckoutSection() {
+            $('.cartmini__checkout').show();
+        }
     </script>
 @endpush

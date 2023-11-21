@@ -51,21 +51,26 @@
                                         <div class="product-quantity-wrapper">
                                             <form action="#">
                                                 <button class="cart-minus"><i class="fa-light fa-minus"></i></button>
-                                                <input class="cart-input" id="" type="text" value="1">
+                                                <input class="cart-input" id="quantityInput" type="text"
+                                                    value="1">
                                                 <button class="cart-plus"><i class="fa-light fa-plus"></i></button>
                                             </form>
                                         </div>
                                     </div>
                                     <div class="product__add-cart">
-                                        <a href="javascript:void(0)" class="bd-fill__btn cart-btn" id="addToCartBtn"
-                                          >
+                                        <a href="javascript:void(0)" class="bd-fill__btn cart-btn" id="addToCartBtn">
                                             <i class="fa-solid fa-basket-shopping"></i> Add To Cart
                                         </a>
                                     </div>
+
                                     <div class="product__add-wish">
                                         <a href="#" class="product__add-wish-btn"><i
                                                 class="fa-solid fa-heart"></i></a>
                                     </div>
+
+                                    <div class="alert alert-success" id="successMessage" style="display: none;"></div>
+                                    <div class="alert alert-danger" id="errorMessage" style="display: none;"></div>
+
                                 </div>
 
                                 <div class="container" id="sizeContainer">
@@ -106,14 +111,14 @@
             </div>
         </div>
     </div>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </div>
 <!-- Add product modal area end -->
 
 @push('scripts')
     <script>
-        function addToCart(productId, selectedSize, quantity) {
-            console.log("dd", productId, selectedSize, quantity)
+        function addToCart(productId, selectedSize, quantity, price) {
+            console.log("from modal.blade", productId, selectedSize, quantity, price)
 
             $.ajax({
                 type: 'GET',
@@ -125,13 +130,33 @@
                 },
                 success: function(response) {
                     console.log(response);
-                    // Handle the success response, update UI, etc.
+                    
+                    if (response) {
+                        $("#successMessage").html(response.message).show();
+                        $("#errorMessage").hide();
+                        // resetModal(price);
+                    }
+
                 },
                 error: function(xhr, status, error) {
                     console.error('Error in AJAX call:', status, error);
                     console.log(xhr);
+
+                    if (xhr.responseJSON.error) {
+                        $("#errorMessage").html(xhr.responseJSON.error).show();
+                        $("#successMessage").hide();
+                        // resetModal(price);
+                    }
+
                 }
             });
+        }
+
+        function resetModal(price) {
+            // Reset the modal content to its default state
+            $("#quantityInput").val(1)
+            $("#productModalPrice").text('₹' + price);
+            // Reset other modal content as needed
         }
 
         // Click event for the "Add to Cart" button inside the modal

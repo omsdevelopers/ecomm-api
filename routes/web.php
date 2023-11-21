@@ -82,3 +82,6 @@ Route::get('/model/{productId}', [ProductDetailsController::class, 'getProductDe
 
 
 Route::get('/cart/{productId}', [CartController::class, 'addToCart']);
+Route::get('/cart', [CartController::class, 'cartList'])->name('cart.index');
+Route::get('/deleteCartItem/{id}', [CartController::class, 'deleteCartItem'])->name('cart.index');
+

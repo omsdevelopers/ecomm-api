@@ -566,7 +566,17 @@
             });
         }
 
+
         function updateModalContent(productDetails, sizePriceArray) {
+
+            function handleAddToCartClick(e) {
+                e.preventDefault();
+                console.log("cart added");
+                addToCart(productDetails.id, sizeValue, quantity, productDetails.price);
+            }
+
+            var productModal = new bootstrap.Modal(document.getElementById('productmodal'));
+
             document.getElementById('productModalTitle').innerText = productDetails.name;
             document.getElementById('productModalPrice').innerText = '₹' + productDetails.price;
             document.getElementById('productModalImage').src = '{{ asset('public/storage/images/') }}' + '/' +
@@ -574,9 +584,7 @@
 
             var addToCartButton = document.getElementById('addToCartBtn');
             if (addToCartButton) {
-                addToCartButton.addEventListener('click', function() {
-                    addToCart(productDetails.id, sizeValue, quantity);
-                });
+                addToCartButton.addEventListener('click', handleAddToCartClick)
             }
 
             var sizesList = document.getElementById('sizesList');
@@ -597,7 +605,8 @@
             }
 
 
-            $(".cart-plus").unbind().click(function() {
+            $(".cart-plus").unbind().click(function(e) {
+                e.preventDefault();
                 var $input = $(this).parent().find("input");
                 $input.val(parseInt($input.val()) + 1);
                 $input.change();
@@ -605,7 +614,8 @@
                 return false;
             });
 
-            $(".cart-minus").unbind().click(function() {
+            $(".cart-minus").unbind().click(function(e) {
+                e.preventDefault();
                 var $input = $(this).parent().find("input");
                 if (parseInt($input.val()) > 1) {
                     $input.val(parseInt($input.val()) - 1);
@@ -615,20 +625,29 @@
                 return false;
             });
 
-            $(".cart-input").unbind().change(function() {
+            $(".cart-input").unbind().change(function(e) {
+                e.preventDefault();
                 quantity = parseFloat($(this).val())
                 updateTotalPrice(productDetails.price, $(this).val());
             });
 
+            var productModal = new bootstrap.Modal(document.getElementById('productmodal'));
+
+            // Attach event listener for when the modal is hidden
+            productModal._element.addEventListener('hide.bs.modal', function() {
+                $("#quantityInput").val(1)
+                if (addToCartButton) {
+                    addToCartButton.removeEventListener('click', handleAddToCartClick);
+                }
+            });
         }
 
         function updateTotalPrice(basePrice, selectedSize) {
             // console.log('val', sizeValue)
             sizeValue = basePrice;
-            var totalPrice = basePrice * quantity || basePrice;
+            var totalPrice = quantity ? basePrice * quantity : basePrice;
             console.log('total', totalPrice)
             $("#productModalPrice").text('₹' + totalPrice.toFixed(2));
         }
-        
     </script>
 @endpush

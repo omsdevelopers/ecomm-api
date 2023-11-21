@@ -472,12 +472,12 @@
 		return false;
 	});
 
-	// $(".cart-plus").click(function () {
-	// 	var $input = $(this).parent().find("input");
-	// 	$input.val(parseInt($input.val()) + 1);
-	// 	$input.change();
-	// 	return false;
-	// });
+	$(".cart-plus").click(function () {
+		var $input = $(this).parent().find("input");
+		$input.val(parseInt($input.val()) + 1);
+		$input.change();
+		return false;
+	});
 
     // Drop-btn js
     $(".btn-dropdown__link").on("click", function () {
@@ -526,10 +526,6 @@
 	function getRndInteger(min, max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
-	$('.cart-btn').on('click', function () {
-		$(".added-to-cart").slideToggle("slow").delay(1500).slideToggle("slow");
-	});
-
 
 	// Wishlist count js
 	var wishlistCountValue = 0;
