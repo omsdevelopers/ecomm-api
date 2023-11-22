@@ -18,18 +18,29 @@ class CartController extends Controller
         try {
             $productDetails = ProductModel::find($productId);
 
-            if (!$productDetails) {
-                return response()->json(['error' => 'Product not found'], 404);
+            if (!$request->input('size')) {
+                return response()->json(['error' => 'Select Size'], 422);
             }
 
-            $existingCartItem = CartModel::where('product_id', $productDetails->id)
-                ->where('user_id', Auth::id() ?? 0)
-                ->where('size', $request->input('size'))
-                ->where('quantity', $request->input('quantity'))
-                ->first();
+            $userId = Auth::id() ;
+
+            // For guest users, use session_id instead of user_id
+            if (!$userId) {
+                $sessionId = session()->getId();             
+                $existingCartItem = CartModel::where('product_id', $productDetails->id)
+                    ->where('session_id', $sessionId)
+                    ->where('size', $request->input('size'))
+                    ->first();
+            } else {
+                // For authenticated users, use user_id
+                $existingCartItem = CartModel::where('product_id', $productDetails->id)
+                    ->where('user_id', $userId)
+                    ->where('size', $request->input('size'))
+                    ->first();
+            }
 
             if ($existingCartItem) {
-                return response()->json(['error' => 'Item is already in cart'], 422);
+                return response()->json(['error' => 'Item is already in the cart'], 422);
             }
 
             $cartItem = new CartModel([
@@ -38,7 +49,8 @@ class CartController extends Controller
                 'size' => $request->input('size'),
                 'quantity' => $request->input('quantity'),
                 'price' => $productDetails->price,
-                'user_id' => Auth::id() ?? 0,
+                'user_id' => $userId,
+                'session_id' => $sessionId ?? 'null',
             ]);
 
             // Save the cart item in the database
@@ -46,20 +58,22 @@ class CartController extends Controller
 
             return response()->json(['message' => 'Item added to cart successfully', 'cartItem' => $cartItem]);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Select Size'], 500);
+            return response()->json(['error' => 'Internal Server Error'], 500);
         }
     }
+
 
     public function cartList()
     {
         $userId = auth()->id();
+        $sessionId = session()->getId();             
 
         if ($userId) {
             // User is authenticated, retrieve cart for the authenticated user
-            $cartItems = CartModel::where('user_id', $userId)->get();
+            $cartItems = CartModel::where('user_id', 1)->get();
         } else {
-            // User is a guest, retrieve cart for the guest user based on session ID
-            $cartItems = CartModel::where('user_id', 0)->with('product')->get();
+        // User is a guest, retrieve cart for the guest user based on session ID
+        $cartItems = CartModel::where('session_id', $sessionId)->with('product')->get();
         }
 
         return response()->json(['message' => 'Item added to cart successfully', 'cartItem' => $cartItems]);
@@ -82,11 +96,12 @@ class CartController extends Controller
     private function getUpdatedCartData()
     {
         $userId = auth()->id();
+        $sessionId = session()->getId();             
 
         if ($userId) {
             $updatedCart = CartModel::where('user_id', $userId)->get();
         } else {
-            $updatedCart = CartModel::where('user_id', 0)->with('product')->get();
+            $updatedCart = CartModel::where('session_id', $sessionId)->with('product')->get();
         }
 
         return $updatedCart;

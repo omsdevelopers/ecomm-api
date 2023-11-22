@@ -19,8 +19,8 @@
             <div class="offcanvas__content">
                 <div class="offcanvas__top mb-40 d-flex justify-content-between align-items-center">
                     <div class="offcanvas__logo logo">
-                        <a href="index.html">
-                            <img src="assets/img/logo/logo-2.png" alt="logo">
+                        <a href="{{route('home')}}">
+                            <img src="{{ asset('assets/img/logo/logo-2.png') }}" alt="logo">
                         </a>
                     </div>
                     <div class="offcanvas__close">
@@ -189,8 +189,8 @@
             <div class="row g-0 align-items-center">
                 <div class="col-xl-2 col-lg-2 col-md-4 col-4 p-0">
                     <div class="bd-header__logo">
-                        <a href="index.html">
-                            <img src="assets/img/logo/logo.png" alt="logo">
+                        <a href="{{route('home')}}">
+                            <img src="{{ asset('assets/img/logo/logo.png') }}" alt="logo">
                         </a>
                     </div>
                 </div>
@@ -258,14 +258,14 @@
                         <div class="bd-header__action">
                             <div class="bd-header__action-icon" onclick="cart()">
                                 <button class="shoping__toggle">
-                                    <img src="assets/img/icon/cart-icon.png" alt="cart-icon">
+                                    <img src="{{ asset('assets/img/icon/cart-icon.png') }}" alt="cart-icon">
                                 </button>
                             </div>
                         </div>
                         <div class="bd-header__hamburger">
                             <div class="bd-header__hamburger-icon">
                                 <button class="side-toggle">
-                                    <img src="assets/img/icon/hamburger-icon.png" alt="hamburger-icon">
+                                    <img src="{{ asset('assets/img/icon/hamburger-icon.png') }}" alt="hamburger-icon">
                                 </button>
                             </div>
                         </div>
@@ -279,6 +279,25 @@
 @push('scripts')
     <script>
         console.log('Script executed');
+
+        window.toggleDropdown = function() {
+            var dropdown = document.getElementById("dropdown-menu");
+            console.log('hi')
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            } else {
+                dropdown.style.display = "block";
+            }
+        }
+
+        // Close the dropdown when clicking outside
+        document.addEventListener("click", function(event) {
+            var dropdown = document.getElementById("dropdown-menu");
+            var button = document.querySelector(".navbar-tool");
+            if (event.target !== button && event.target !== dropdown) {
+                dropdown.style.display = "none";
+            }
+        });
 
         function cart() {
             $.ajax({

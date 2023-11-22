@@ -64,6 +64,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('services', [PageController::class, 'services'])->name('services');
 Route::get('about', [PageController::class, 'about'])->name('about');
 Route::get('contact', [PageController::class, 'contact'])->name('contact');
+Route::get('cart-items', [PageController::class, 'cart'])->name('cart-items');
+Route::get('/product/{productId}', [PageController::class, 'productDetails'])->name('product-details');
+
 
 Route::middleware(['guest'])->group(function () {
     Route::get('login', [PageController::class, 'login'])->name('login');
@@ -76,12 +79,10 @@ Route::middleware(['guest'])->group(function () {
 
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-
-//model call
 Route::get('/model/{productId}', [ProductDetailsController::class, 'getProductDetails']);
 
-
-Route::get('/cart/{productId}', [CartController::class, 'addToCart']);
-Route::get('/cart', [CartController::class, 'cartList'])->name('cart.index');
-Route::get('/deleteCartItem/{id}', [CartController::class, 'deleteCartItem'])->name('cart.index');
-
+Route::middleware(['web'])->group(function () {
+    Route::get('/cart/{productId}', [CartController::class, 'addToCart']);
+    Route::get('/cart', [CartController::class, 'cartList'])->name('cart.index');
+    Route::get('/deleteCartItem/{id}', [CartController::class, 'deleteCartItem'])->name('delete-cart');
+});

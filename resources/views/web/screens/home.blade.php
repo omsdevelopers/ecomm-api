@@ -390,8 +390,8 @@
                                     alt="product-img">
                             </div>
                             <div class="bd-product__content flex-fill d-flex flex-column ">
-                                <h4><a href="#">{{ $product->name }}</a></h4>
-                                <span class="bd-product__new-price">${{ $product->price }}</span>
+                                <h4><a href="{{ url()->to('product', ['productId' => $product->id]) }}">{{ $product->name }}</a></h4>
+                                <span class="bd-product__new-price">₹{{ $product->price }}</span>
                             </div>
                             <div class="bd-product__action">
                                 <a class="cart-btn" href="javascript:void(0)" data-toggle="tooltip" data-placement="top"
