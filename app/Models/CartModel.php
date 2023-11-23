@@ -12,7 +12,7 @@ class CartModel extends Model
     protected $table = 'carts';
 
     protected $fillable = [
-        'name', 'price', 'size', 'quantity', 'user_id', 'product_id', 'session_id',
+        'name', 'price', 'size', 'quantity', 'user_id', 'product_id', 'session_id', 'total',
     ];
 
 

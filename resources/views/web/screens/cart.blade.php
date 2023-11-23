@@ -66,7 +66,8 @@
                                                         <form action="#">
                                                             <button class="cart-minus"><i class="far fa-minus"></i></button>
                                                             <input class="cart-input" id="quantityInput"type="text"
-                                                                value="{{ $item->quantity ?? 1 }}" name="quantity">
+                                                                value="{{ $item->quantity ?? 1 }}"
+                                                                data-item-id="{{ $item->id }}" name="quantity">
                                                             <button class="cart-plus"><i class="far fa-plus"></i></button>
                                                         </form>
 
@@ -92,21 +93,32 @@
                             <div class="col-12">
                                 <div class="coupon-all">
                                     <div class="coupon2">
-                                        <button onclick="window.location.reload()" class="bd-fill__btn-2" name="update_cart"
-                                            type="submit">Update cart</button>
+                                        <button class="bd-fill__btn-2 mb-4" name="update_cart" type="submit">Update
+                                            cart</button>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="alert alert-success" id="successMessage" style="display: none;"></div>
+                            <div class="alert alert-danger" id="errorMessage" style="display: none;"></div>
                         </div>
                         <div class="row">
                             <div class="col-md-5 ml-auto">
                                 <div class="cart-page-total">
                                     <h2>Cart totals</h2>
+
                                     <ul class="mb-20">
-                                        <li>Subtotal <span>$78.00</span></li>
-                                        <li>Total <span>$78.00</span></li>
+                                        @php
+                                            $subtotal = 0;
+                                            foreach ($cart as $item) {
+                                                $itemPrice = $item->size ? $item->size * ($item->quantity ?: 1) : $item->price * ($item->quantity ?: 1);
+                                                $subtotal += $itemPrice;
+                                            }
+                                        @endphp
+                                        <li>Subtotal <span></span>:  ₹{{ $subtotal }}</li>
+                                        <li>Total <span></span>:  ₹{{ $subtotal }}</li>
                                     </ul>
-                                    <a class="bd-fill__btn-2" href="checkout.html">Proceed to checkout</a>
+                                    <a class="bd-fill__btn-2" href="{{route('checkout',['id' => $cart->pluck('id')->implode(','), 'subtotal' => $subtotal]) }})}}">Proceed to checkout</a>
                                 </div>
                             </div>
                         </div>
@@ -149,32 +161,56 @@
                 updateCartItem($(this));
             });
 
-            function updateCartItem(input) {
+            $(".bd-fill__btn-2[name='update_cart']").click(function(e) {
+                e.preventDefault();
+
+                // Loop through each cart item
+                $(".cart-input").each(function() {
+                    updateCartItem($(this), true);
+                });
+            });
+
+            function updateCartItem(input, isUpdateCart) {
+
                 var quantity = parseInt(input.val()) || 0;
                 console.log("cc", quantity)
 
-                var priceText = input.closest('tr').find('.product-price span.amount').text().replace('₹', '');
+                var priceText = input.closest('tr').find('.product-price span.amount').text().replace(
+                    '₹', '');
                 var price = parseFloat(priceText.trim()) || 0; // Default to 0 if NaN
 
-                console.log("Price Text: ", priceText);
-
                 var subtotal = quantity * price;
+                console.log("Price Text: ", subtotal);
+
 
                 // Update the subtotal for the current item
-                input.closest('tr').find('.product-subtotal span.amount').text('₹' + subtotal.toFixed(2));
+                input.closest('tr').find('.product-subtotal span.amount').text('₹' + subtotal.toFixed(
+                    2));
+
+                if (isUpdateCart) {
+                    var itemId = input.data('item-id');
+
+                    updateCartItemOnServer(itemId, quantity, subtotal);
+                }
 
                 // Calculate the new total and update the page
-                updateTotal(subtotal);
+                // updateTotal(subtotal);
             }
 
-            function updateTotal(subtotal) {
-                var currentTotal = parseFloat($('#subtotal span').text().replace('₹', '')) || 0;
-                var newTotal = currentTotal + subtotal;
+            // function updateTotal(subtotal) {
+            //     // Update the subtotal on the page
+            //     var currentSubtotal = parseFloat($('.cart-page-total ul li:nth-child(1) span').text().replace('₹',
+            //         '')) || 0;
+            //     var newSubtotal = currentSubtotal + subtotal;
+            //     $('.cart-page-total ul li:nth-child(1) span').text('₹' + newSubtotal.toFixed(2));
 
-                // Update the total on the page
-                $('#subtotal span').text('₹' + newTotal.toFixed(2));
-                $('#cartTotal span').text('₹' + newTotal.toFixed(2));
-            }
+            //     // Update the total on the page
+            //     var currentTotal = parseFloat($('.cart-page-total ul li:nth-child(2) span').text().replace('₹',
+            //         '')) || 0;
+            //     var newTotal = currentTotal + subtotal;
+            //     $('.cart-page-total ul li:nth-child(2) span').text('₹' + newTotal.toFixed(2));
+            // }
+
         });
 
         function handleDeleteCartItem(itemId) {
@@ -185,18 +221,44 @@
                     "_token": "{{ csrf_token() }}",
                 },
                 success: function(response, xhr) {
-                    // Assuming the response contains the updated cart data
-                    if (xhr.status === 200) {
-                        alert('Cart Deleted');
-
-                        // Reload the current page
+              
                         window.location.reload();
-                    }
+                    // }
                 },
                 error: function(xhr, status, error) {
                     console.error('Error in AJAX call:', status, error);
                     console.log(xhr);
                     // Handle error if needed
+                }
+            });
+        }
+
+        function updateCartItemOnServer(itemId, quantity, subtotal) {
+            // Send an AJAX request to update the server-side data
+            $.ajax({
+                type: 'POST',
+                url: '/updateCartItem/' + itemId,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "quantity": quantity,
+                    "subtotal": subtotal,
+                },
+                success: function(response) {
+                    // Handle success if needed
+                    console.log(response)
+
+                    if (response) {
+                        $("#successMessage").html(response.message).show();
+                        $("#errorMessage").hide();
+
+                        window.location.reload();
+
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error in AJAX call:', status, error);
+                    $("#errorMessage").html(xhr.responseJSON.error).show();
+                    $("#successMessage").hide();
                 }
             });
         }

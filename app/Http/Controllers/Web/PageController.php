@@ -54,7 +54,7 @@ class PageController extends Controller
 
         if ($userId) {
             // User is authenticated, retrieve cart for the authenticated user
-            $cartItems = CartModel::where('user_id', 1)->get();
+            $cartItems = CartModel::where('user_id', $userId)->get();
         } else {
             // User is a guest, retrieve cart for the guest user based on session ID
             $cartItems = CartModel::where('session_id', $sessionId)->with('product')->get();
@@ -73,6 +73,25 @@ class PageController extends Controller
         return view('web.screens.product', [
             'product' => $productDetails,
             'header_title' => "Product",
+        ]);
+    }
+
+    public function checkout($id)
+    {
+        $cartIds = explode(',', $id);
+
+        $cartItems = CartModel::whereIn('id', $cartIds)->get();
+        // dd($cartItems);
+
+        $subtotal = 0;
+        foreach ($cartItems as $item) {
+            $subtotal += $item->size ? $item->size * ($item->quantity ?: 1) : $item->price * ($item->quantity ?: 1);
+        }
+
+        return view('web.screens.checkout', [
+            'header_title' => "Checkout",
+            'cartItems' => $cartItems,
+            'subtotal' => $subtotal,
         ]);
     }
 }

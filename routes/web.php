@@ -13,6 +13,7 @@ use App\Http\Controllers\Web\RegisterController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Web\ProductDetailsController;
 use App\Http\Controllers\web\CartController;
+use App\Http\Controllers\web\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,4 +86,10 @@ Route::middleware(['web'])->group(function () {
     Route::get('/cart/{productId}', [CartController::class, 'addToCart']);
     Route::get('/cart', [CartController::class, 'cartList'])->name('cart.index');
     Route::get('/deleteCartItem/{id}', [CartController::class, 'deleteCartItem'])->name('delete-cart');
+    Route::post('/updateCartItem/{itemId}', [CartController::class, 'updateCartItem']);
 });
+
+
+//checkout_process
+Route::get('/checkout/{id}', [PageController::class, 'checkout'])->name('checkout');
+Route::post('/place-order', [CheckoutController::class, 'placeOrder'])->name('place-order');

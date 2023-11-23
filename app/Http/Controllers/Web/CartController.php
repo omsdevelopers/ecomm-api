@@ -22,11 +22,11 @@ class CartController extends Controller
                 return response()->json(['error' => 'Select Size'], 422);
             }
 
-            $userId = Auth::id() ;
+            $userId = Auth::id();
 
             // For guest users, use session_id instead of user_id
             if (!$userId) {
-                $sessionId = session()->getId();             
+                $sessionId = session()->getId();
                 $existingCartItem = CartModel::where('product_id', $productDetails->id)
                     ->where('session_id', $sessionId)
                     ->where('size', $request->input('size'))
@@ -66,14 +66,14 @@ class CartController extends Controller
     public function cartList()
     {
         $userId = auth()->id();
-        $sessionId = session()->getId();             
+        $sessionId = session()->getId();
 
         if ($userId) {
             // User is authenticated, retrieve cart for the authenticated user
-            $cartItems = CartModel::where('user_id', 1)->get();
+            $cartItems = CartModel::where('user_id', $userId)->with('product')->get();
         } else {
-        // User is a guest, retrieve cart for the guest user based on session ID
-        $cartItems = CartModel::where('session_id', $sessionId)->with('product')->get();
+            // User is a guest, retrieve cart for the guest user based on session ID
+            $cartItems = CartModel::where('session_id', $sessionId)->with('product')->get();
         }
 
         return response()->json(['message' => 'Item added to cart successfully', 'cartItem' => $cartItems]);
@@ -96,7 +96,7 @@ class CartController extends Controller
     private function getUpdatedCartData()
     {
         $userId = auth()->id();
-        $sessionId = session()->getId();             
+        $sessionId = session()->getId();
 
         if ($userId) {
             $updatedCart = CartModel::where('user_id', $userId)->get();
@@ -105,5 +105,23 @@ class CartController extends Controller
         }
 
         return $updatedCart;
+    }
+
+    public function updateCartItem(Request $request, $itemId)
+    {
+        try {
+            $cartItem = CartModel::findOrFail($itemId);
+            // dd($cartItem);
+
+            // Update the quantity
+            $cartItem->quantity = $request->input('quantity');
+            $cartItem->total = $request->input('subtotal');
+            $cartItem->save();
+
+            return response()->json(['message' => 'Cart item updated successfully']);
+        } catch (\Exception $e) {
+            // Handle exceptions or errors
+            return response()->json(['error' => 'Error updating cart item'], 500);
+        }
     }
 }

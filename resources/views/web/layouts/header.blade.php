@@ -335,16 +335,14 @@
                 var listItem = `
                 <li>
                     <div class="cartmini__thumb">
-                        <a href="product-details.html">
+                        <a href="#">
                             <img src='{{ asset('public/storage/images/') }}/${item.product.image}' alt="">
                         </a>
                     </div>
                     <div class="cartmini__content">
                         <h5><a href="product-details.html" id="cartTitle">${item.name}</a></h5>
                         <div class="product-quantity mt-10 mb-10">
-                            <span class="cart-minus">-</span>
                             <input class="cart-input" type="text" value="${item.quantity || 1}">
-                            <span class="cart-plus">+</span>
                         </div>
                         <div class="product__sm-price-wrapper">
                             <span class="product__sm-price">₹${item.size ? item.size * (item.quantity || 1) : item.price * (item.quantity || 1)}</span>

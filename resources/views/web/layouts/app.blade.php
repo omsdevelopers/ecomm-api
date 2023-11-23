@@ -69,7 +69,7 @@
     <script src="{{ asset('assets/js/vendor/jquery.js') }}"></script>
 
     @stack('scripts')
-
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>
     <script src="{{ asset('assets/js/vendor/jquery.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/waypoints.js') }}"></script>
