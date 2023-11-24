@@ -5,10 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class OrderModel extends Model
 {
     use HasFactory;
+
     protected $table = 'orders';
+
+    protected $casts = [
+        'product_id' => 'array',
+    ];
     protected $fillable = [
         'user_id',
         'session_id',
@@ -27,6 +32,10 @@ class Order extends Model
         'razorpay_payment_id',
         'order_status',
         'product_id',
+        'order_id',
+        'payment_status',
+        'quantity',
+        'subtotal',
     ];
 
     // Relationships

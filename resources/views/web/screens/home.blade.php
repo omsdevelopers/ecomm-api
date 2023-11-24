@@ -2,6 +2,7 @@
 
 @section('content')
     <section class="bd-hero__area">
+  
         <div class="hero__active swiper-container">
 
             <div class="swiper-wrapper">
@@ -91,7 +92,7 @@
     <section class="bd-features__area" data-background="assets/img/bg/section-bg.jpg">
         <div class="bd-features__wrapper">
             <div class="bd-features__top">
-                <span>farming since 1956</span>
+                <span>Best Products</span>
                 <img class="bd-features__top-icon" src="assets/img/features/features-cow.png" alt="features-cow-icon">
             </div>
             <div class="container">
@@ -207,7 +208,7 @@
                                 <p>Years experience</p>
                             </div>
                         </div>
-                        <a class="bd-theme__btn-1" href="about.html">get in touch</a>
+                        <a class="bd-theme__btn-1" href="{{ route('about') }}">get in touch</a>
                     </div>
                 </div>
             </div>
@@ -315,7 +316,7 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 text-end mb-30">
                     <div class="bd-service__cta-btn mt-5 text-xl-end text-start">
-                        <a class="bd-theme__btn-1" href="about.html">get a quote</a>
+                        <a class="bd-theme__btn-1" href="{{ route('contact') }}">get a quote</a>
                     </div>
                 </div>
             </div>
@@ -390,7 +391,9 @@
                                     alt="product-img">
                             </div>
                             <div class="bd-product__content flex-fill d-flex flex-column ">
-                                <h4><a href="{{ url()->to('product', ['productId' => $product->id]) }}">{{ $product->name }}</a></h4>
+                                <h4><a
+                                        href="{{ url()->to('product', ['productId' => $product->id]) }}">{{ $product->name }}</a>
+                                </h4>
                                 <span class="bd-product__new-price">₹{{ $product->price }}</span>
                             </div>
                             <div class="bd-product__action">
@@ -427,7 +430,7 @@
                 <div class="col-12">
                     <div class="bd-video__wrapper text-center">
                         <div class="bd-video__btn d-flex justify-content-center mb-50">
-                            <a class="bd-play__btn  popup-video" href="https://www.youtube.com/watch?v=awKCfkT96pg"><i
+                            <a class="bd-play__btn  popup-video" href="https://www.youtube.com/watch?v=pc_CgajMMxE"><i
                                     class="fa-solid fa-play"></i></a>
                         </div>
                         <div class="bd-section__title-wrapper mb-45">
@@ -436,8 +439,8 @@
                                 work difference</h2>
                         </div>
                         <div class="bd-video__btn-wrapper">
-                            <a class="bd-theme__btn-2" href="contact.html">make appointment</a>
-                            <a class="bd-theme__btn-1" href="contact.html">get a quote</a>
+                            <a class="bd-theme__btn-2" href="{{ route('contact') }}">make appointment</a>
+                            <a class="bd-theme__btn-1" href="{{ route('contact') }}">get a quote</a>
                         </div>
                     </div>
                 </div>
@@ -489,7 +492,7 @@
                                     <div class="bd-cta__input-item mb-30">
                                         <h5 class="bd-cta__input-title">phone number</h5>
                                         <div class="bd-cta__input">
-                                            <input type="text" placeholder="000 111 222 55">
+                                            <input type="text" placeholder="999 99 99 999">
                                             <i class="fa-solid fa-phone"></i>
                                         </div>
                                     </div>
@@ -518,7 +521,7 @@
                             </div>
                             <div class="bd-contact__action-text">
                                 <span>Or Call Us Now</span>
-                                <h3><a href="tel:00211232000">00 211 232 000</a></h3>
+                                <h3><a href="tel:00211232000">999 99 99 999</a></h3>
                             </div>
                         </div>
                         <p class="bd-cta__paragraph">Give us a call to ask for online advice or book

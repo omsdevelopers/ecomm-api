@@ -152,6 +152,17 @@
           </a>
         </li>
 
+        <li class="nav-item">
+          <a href="{{route('list-orders')}}"
+            class="nav-link {{ request()->segment(2) === 'allOrders' ? 'active' : '' }}">
+            <i class="fa fa-tasks" aria-hidden="true"></i>
+
+            <p>
+              Orders
+            </p>
+          </a>
+        </li>
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

@@ -6,7 +6,7 @@
 
     <!-- Breadcrumb area start -->
     <div class="bd-breadcrumb__area include__bg hero__overlay Breadcrumb__height d-flex align-items-center"
-        data-background="assets/img/hero/breadcrumb.jpg">
+        data-background="assets/img/hero/contact-breadcrumb.jpg">
         <div class="container fluid">
             <div class="row">
                 <div class="col-xl-12">

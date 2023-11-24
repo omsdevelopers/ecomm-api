@@ -18,6 +18,7 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
 </head>
 <!--
@@ -55,7 +56,7 @@
 
         <!-- jQuery -->
         @stack('scripts')
-        
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
         <script src="{{ url('public/admin/assets/plugins/jquery/jquery.min.js') }}"></script>

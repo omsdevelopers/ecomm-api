@@ -67,6 +67,7 @@
         <section class="checkout-area pb-90">
             <div class="container small-container">
                 <form action="{{ route('place-order') }}" method="POST">
+                    @method('POST')
                     @csrf
                     <div class="row">
                         <div class="col-lg-6">
@@ -175,6 +176,12 @@
                                                             $subtotal += $item->size * $item->quantity;
                                                         @endphp
                                                     </td>
+
+                                                    <input type="hidden" name="product_ids[]" value="{{ $item->product->id }}">
+
+                                                    <input type="hidden" name="quantity" value="{{  $item->quantity }}">
+
+                                                    <input type="hidden" name="subtotal" value="{{  $subtotal  }}">
                                                 </tr>
                                             @endforeach
                                         </tbody>

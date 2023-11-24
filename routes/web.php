@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\PageController;
 use App\Http\Controllers\Web\LoginController;
@@ -53,6 +54,13 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/brand/delete/{id}', [BrandController::class, 'brand_delete'])->name('delete-brand');
 
     Route::resource('admin/products', ProductController::class);
+
+    Route::get('admin/allOrders', [OrdersController::class, 'listOrders'])->name('list-orders');
+    Route::patch('/orders/{orderId}/update-status', [OrdersController::class, 'updateStatus'])->name('orders.updateStatus');
+    Route::delete('/orders/{orderId}', [OrdersController::class, 'destroy'])->name('orders.destroy');
+    Route::get('admin/orders/{orderId}/invoice', [OrdersController::class, 'generateInvoice'])->name('orders.generateInvoice');
+
+
 });
 
 
@@ -93,3 +101,4 @@ Route::middleware(['web'])->group(function () {
 //checkout_process
 Route::get('/checkout/{id}', [PageController::class, 'checkout'])->name('checkout');
 Route::post('/place-order', [CheckoutController::class, 'placeOrder'])->name('place-order');
+Route::post('razorpay-payment',[CheckoutController::class,'store'])->name('razorpay.payment.store');

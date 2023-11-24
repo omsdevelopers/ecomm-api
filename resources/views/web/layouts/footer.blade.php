@@ -68,7 +68,7 @@
                             </div>
                             <div class="bd-footer__support-title">
                                <span>Emergency Service</span>
-                               <a href="tel:00011122233">000 111 222 33</a>
+                               <a href="tel:00011122233">999 99 99 999</a>
                             </div>
                          </div>
                       </div>
@@ -78,18 +78,18 @@
              <div class="col-xl-3 col-lg-8 col-md-6">
                 <div class="bd-footer__widget footer-col-4 mb-60">
                    <div class="bd-footer__title">
-                      <h4>Subscribe us</h4>
-                   </div>
+                     <h4>New Content</h4>
+                  </div>
                    <div class="bd-footer__subcribe">
-                      <p>Subscribe us & recive our office
-                      & update in your inbox directly</p>
-                      <form action="#">
+                     <p>Explore the latest updates and news from our website</p>
+
+                      {{-- <form action="#">
                          <div class="bd-footer__input p-relative mb-20">
                             <input type="text" placeholder="info@webmail.com">
                             <i class="fa-solid fa-envelope-open"></i>
                          </div>
                          <button type="button" class="bd-theme__btn-3">subscribe now</button>
-                      </form>
+                      </form> --}}
                    </div>
                 </div>
              </div>
