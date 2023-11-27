@@ -102,7 +102,7 @@
                    <div class="bd-copyright__main">
                       <div class="bd-copyright__border">
                          <div class="bd-copyright__text">
-                            <p>Copyright design by <span><a target="_blank" href="#">@bdevs</a></span> - 2022</p>
+                            <p>Copyright design by <span><a target="_blank" href="#">Orange Mega Softwares</a></span> - 2023</p>
                          </div>
                       </div>
                    </div>

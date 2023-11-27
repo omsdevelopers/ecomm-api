@@ -14,11 +14,12 @@ class ProductDetailsController extends Controller
 {
     public function getProductDetails($productId)
     {
-        $productDetails = ProductModel::where("id", $productId)->first();
+        $productDetails = ProductModel::where("id", $productId)->with('category', 'brand')
+            ->first();
 
         $sizePriceArray = [];
         $sizePricePairs = explode(', ', $productDetails->size);
-    
+
         foreach ($sizePricePairs as $pair) {
             list($size, $price) = explode(':', $pair);
             $sizePriceArray[$size] = $price;
@@ -26,7 +27,4 @@ class ProductDetailsController extends Controller
 
         return response()->json(compact('productDetails', 'sizePriceArray'));
     }
-
-
-    
 }

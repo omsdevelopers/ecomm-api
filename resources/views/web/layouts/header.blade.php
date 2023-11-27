@@ -19,8 +19,8 @@
             <div class="offcanvas__content">
                 <div class="offcanvas__top mb-40 d-flex justify-content-between align-items-center">
                     <div class="offcanvas__logo logo">
-                        <a href="{{route('home')}}">
-                            <img src="{{ asset('assets/img/logo/logo-2.png') }}" alt="logo">
+                        <a href="{{ route('home') }}">
+                            <img src="{{ asset('assets/img/logo/logo.png') }}" alt="logo">
                         </a>
                     </div>
                     <div class="offcanvas__close">
@@ -92,7 +92,7 @@
                             <div class="offcanvas__contact-text">
                                 <a target="_blank"
                                     href="https://www.google.com/maps/place/Dhaka/@23.7806207,90.3492859,12z/data=!3m1!4b1!4m5!3m4!1s0x3755b8b087026b81:0x8fa563bbdd5904c2!8m2!3d23.8104753!4d90.4119873">12/A,
-                                    Mirnada City Tower, NYC</a>
+                                    India, TN</a>
                             </div>
                         </li>
                         <li class="d-flex align-items-center">
@@ -100,7 +100,7 @@
                                 <i class="far fa-phone"></i>
                             </div>
                             <div class="offcanvas__contact-text">
-                                <a href="tel:+088889797697">+088889797697</a>
+                                <a href="tel:+088889797697">999 99 99 999</a>
                             </div>
                         </li>
                         <li class="d-flex align-items-center">
@@ -189,7 +189,7 @@
             <div class="row g-0 align-items-center">
                 <div class="col-xl-2 col-lg-2 col-md-4 col-4 p-0">
                     <div class="bd-header__logo">
-                        <a href="{{route('home')}}">
+                        <a href="{{ route('home') }}">
                             <img src="{{ asset('assets/img/logo/logo.png') }}" alt="logo">
                         </a>
                     </div>
@@ -214,7 +214,7 @@
                                         @if (auth('web')->check())
                                             <div class="dropdown">
                                                 <button class="navbar-tool ml-3"
-                                                    onclick="toggleDropdown()">{{ 'hello' }},
+                                                    onclick="toggleDropdown()">{{ 'Hello' }},
                                                     {{ auth('web')->user()->name }}
                                                     <span style="margin-left: 5px;">▼</span>
 
@@ -225,9 +225,10 @@
                                                     style="display: none; position: absolute; top: 100%; left: 0; z-index: 1000; min-width: 200px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border: 1px solid #ccc; background-color: #fff; border-radius: 8px; overflow: hidden;">
                                                     <!-- Dropdown content goes here -->
                                                     <a style="display: block; padding: 15px; color: #333; text-decoration: none; transition: background-color 0.3s; border-bottom: 1px solid #eee;"
-                                                        href="#">{{ __('my order') }}</a>
-                                                    <a style="display: block; padding: 15px; color: #333; text-decoration: none; transition: background-color 0.3s; border-bottom: 1px solid #eee;"
-                                                        href="#">{{ __('my profile') }}</a>
+                                                        href="{{ route('my-orders') }}">{{ __('my orders') }}</a>
+
+                                                    {{-- <a style="display: block; padding: 15px; color: #333; text-decoration: none; transition: background-color 0.3s; border-bottom: 1px solid #eee;"
+                                                        href="#">{{ __('my profile') }}</a> --}}
                                                     <div
                                                         style="height: 1px; margin: 8px 0; overflow: hidden; background-color: #eee;">
                                                     </div>
@@ -256,7 +257,12 @@
                 <div class="col-xl-2 col-lg-1 col-md-4 col-8">
                     <div class="bd-header__right d-flex align-items-center justify-content-end">
                         <div class="bd-header__action">
-                            <div class="bd-header__action-icon" onclick="cart()">
+                            <div class="" style="height: 80px;
+                            width: 80px;
+                            background: #eddd5e;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-around;" onclick="cart()">
                                 <button class="shoping__toggle">
                                     <img src="{{ asset('assets/img/icon/cart-icon.png') }}" alt="cart-icon">
                                 </button>
@@ -265,7 +271,8 @@
                         <div class="bd-header__hamburger">
                             <div class="bd-header__hamburger-icon">
                                 <button class="side-toggle">
-                                    <img src="{{ asset('assets/img/icon/hamburger-icon.png') }}" alt="hamburger-icon">
+                                    <img src="{{ asset('assets/img/icon/hamburger-icon.png') }}"
+                                        alt="hamburger-icon">
                                 </button>
                             </div>
                         </div>

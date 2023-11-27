@@ -167,13 +167,14 @@
                                                 <tr class="cart_item">
                                                     <td class="product-name">
                                                         {{ $item->name }} <strong class="product-quantity"> ×
-                                                            {{ $item->quantity }}</strong>
+                                                            {{ $item->quantity ?? 1 }}</strong>
                                                     </td>
 
                                                     <td class="product-total">
-                                                        <span class="amount">₹{{ $item->size * $item->quantity }}</span>
+                                                        <span class="amount">₹{{ $item->size * ($item->quantity ?? 1) }}</span>
+
                                                         @php
-                                                            $subtotal += $item->size * $item->quantity;
+                                                            $subtotal += $item->size * ($item->quantity ?? 1);
                                                         @endphp
                                                     </td>
 

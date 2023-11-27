@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\BrandModel;
+use App\Models\CartModel;
 use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -65,13 +66,23 @@ class OrdersController extends Controller
     {
         $order = OrderModel::findOrFail($orderId);
 
-        $productIds = $order->product_id;
-        $products = ProductModel::whereIn('id', $productIds)->get();
+        // $productIds = $order->product_id;
+        // $products = ProductModel::whereIn('id', $productIds)->get();
 
-        Log::info('data : ' . json_encode($order));
+        if (empty($order->user_id)) {
+            $cartItems = CartModel::where('session_id', $order->session_id)->with('product')->get();
+        } else {
+            $cartItems = CartModel::where('user_id', $order->user_id)->with('product')->get();
+        }
+
+        $totalSum = $cartItems->sum(function ($item) {
+            return $item->quantity * $item->size;
+        });
+
+        Log::info('data : ' . json_encode($totalSum ));
 
 
-        $pdf = PDF::loadView('admin.invoice', ['order' => $order, 'products' => $products]);
+        $pdf = PDF::loadView('admin.invoice', ['order' => $order, 'products' => $cartItems, 'totalSum' => $totalSum]);
 
 
         return $pdf->download('invoice.pdf');

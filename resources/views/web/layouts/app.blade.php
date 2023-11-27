@@ -25,9 +25,9 @@
                 height: auto;
             }
 
-            .d-flex {
+            /* .d-flex {
                 flex-direction: column;
-            }
+            } */
 
             .position-absolute {
                 position: static;

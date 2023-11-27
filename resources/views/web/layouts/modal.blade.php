@@ -37,10 +37,10 @@
                                         <a href="#"><i class="fa-regular fa-star"></i></a>
                                         <a href="#"><i class="fa-regular fa-star"></i></a>
                                     </div>
-                                    <div class="product__add-review">
+                                    {{-- <div class="product__add-review">
                                         <span><a href="#">1 Review</a></span>
                                         <span><a href="#">Add Review</a></span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="product__stock mb-20">
                                     <span>Availability :</span>
@@ -63,10 +63,10 @@
                                         </a>
                                     </div>
 
-                                    <div class="product__add-wish">
+                                    {{-- <div class="product__add-wish">
                                         <a href="#" class="product__add-wish-btn"><i
                                                 class="fa-solid fa-heart"></i></a>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="alert alert-success" id="successMessage" style="display: none;"></div>
                                     <div class="alert alert-danger" id="errorMessage" style="display: none;"></div>
@@ -82,7 +82,7 @@
 
 
 
-                                <div class="product__modal-links mb-20">
+                                {{-- <div class="product__modal-links mb-20">
                                     <ul>
                                         <li><a href="#" title="Add to Wishlist"><i class="fal fa-heart"></i></a>
                                         </li>
@@ -92,16 +92,17 @@
                                         <li><a href="#" title="Print"><i class="fal fa-share-alt"></i></a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> --}}
                                 <div class="product__safe-checkout">
                                     <h5>Guaranteed Safe Checkout</h5>
-                                    <a href="#"><img src="assets/img/product/details/discover.png"
+                                    <a href="#"><img src="{{ asset('assets/img/product/details/discover.png') }}"
                                             alt="payment image"></a>
-                                    <a href="#"><img src="assets/img/product/details//mastercard.png"
+                                    <a href="#"><img
+                                            src="{{ asset('assets/img/product/details//mastercard.png') }}"
                                             alt="payment image"></a>
-                                    <a href="#"><img src="assets/img/product/details/paypal.png"
+                                    <a href="#"><img src="{{ asset('assets/img/product/details/paypal.png') }}"
                                             alt="payment image"></a>
-                                    <a href="#"><img src="assets/img/product/details/visa.png"
+                                    <a href="#"><img src="{{ asset('assets/img/product/details/visa.png') }}"
                                             alt="payment image"></a>
                                 </div>
                             </div>
@@ -118,7 +119,6 @@
 @push('scripts')
     <script>
         function addToCart(productId, selectedSize, quantity, price) {
-            console.log("from modal.blade", productId, selectedSize, quantity, price)
 
             $.ajax({
                 type: 'GET',
@@ -130,7 +130,7 @@
                 },
                 success: function(response) {
                     console.log(response);
-                    
+
                     if (response) {
                         $("#successMessage").html(response.message).show();
                         $("#errorMessage").hide();

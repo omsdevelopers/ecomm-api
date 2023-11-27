@@ -48,7 +48,8 @@ class ProductController extends Controller
                 'description' => $request->input('description'),
                 'category_id' => $request->input('category_id'),
                 'brand_id' => $request->input('brand_id'),
-                'image' => $imageName, 
+                'featured' => $request->input('feature'),
+                'image' => $imageName,
                 'size' => $request->input('sizes'),
             ];
 
@@ -59,14 +60,45 @@ class ProductController extends Controller
             return redirect()->route('products.index')->withSuccess('Product added successfully!');
         } catch (\Exception $e) {
             // Handle the exception
-            
+
             Alert::error('Error', 'Product creation failed. Please try again.');
             return back()->withInput()->withErrors(['error' => 'Product creation failed. Please try again.']);
         }
     }
 
-    public function show(ProductModel $product)
+    public function destroy(ProductModel $product)
     {
-        return view('products.show', compact('product'));
+        $product->delete();
+
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully');
+    }
+
+    public function edit(ProductModel $product)
+    {
+        $categories = CategoryModel::all();
+        $brands = BrandModel::all();
+
+        return view('admin.product.edit', [
+            'product' => $product,
+            'categories' => $categories,
+            'brands' => $brands,
+            'header_title' => "Edit Product",
+        ]);
+    }
+
+    public function update(Request $request, ProductModel $product)
+    {
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'price' => 'required|numeric',
+        //     'description' => 'required|string',
+        //     'category_id' => 'required|exists:categories,id',
+        //     'brand_id' => 'required|exists:brands,id',
+        //     // Add other validation rules as needed
+        // ]);
+
+        $product->update($request->all());
+
+        return redirect()->route('products.index')->with('success', 'Product updated successfully');
     }
 }

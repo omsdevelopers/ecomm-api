@@ -56,7 +56,7 @@
                                             <th>Address</th>
                                             <th>Order Status</th>
                                             <th>Payment Status</th>
-                                            <!-- Add more columns as needed -->
+                                            <th>Invoice</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -97,15 +97,20 @@
                                                     </form>
                                                 </td>
                                                 <td>{{ $order->payment_status }}</td>
-                                                <!-- Add more columns as needed -->
                                                 <td>
-                                                    <a href="#" class="btn btn-info btn-sm mr-2">
+                                                    <a href="{{ route('orders.generateInvoice', $order->id) }}"
+                                                        class="btn btn-primary btn-sm">
+                                                        Download Invoice
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    {{-- <a href="#" class="btn btn-info btn-sm mr-2">
                                                         <i class="fas fa-eye fa-sm"></i>
                                                     </a>
 
                                                     <a href="#" class="btn btn-warning btn-sm mr-2">
                                                         <i class="fas fa-edit fa-sm"></i>
-                                                    </a>
+                                                    </a> --}}
 
                                                     <form method="POST" action="{{ route('orders.destroy', $order->id) }}"
                                                         onsubmit="return confirm('Are you sure you want to delete this order?');">

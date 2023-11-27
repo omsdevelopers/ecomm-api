@@ -43,4 +43,9 @@ class OrderModel extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function product()
+    {
+        return $this->belongsTo(ProductModel::class, 'product_id', 'id');
+    }
 }

@@ -11,23 +11,28 @@ class ProductModel extends Model
     protected $table = 'products';
 
     protected $fillable = [
-        'name', 'price', 'description', 'category_id', 'brand_id', 'image', 'size',
+        'name', 'price', 'description', 'category_id', 'brand_id', 'image', 'size', 'featured',
     ];
 
-     // Define the relationship with the Category model
-     public function category()
-     {
-         return $this->belongsTo(CategoryModel::class, 'category_id');
-     }
- 
-     // Define the relationship with the Brand model
-     public function brand()
-     {
-         return $this->belongsTo(BrandModel::class, 'brand_id');
-     }
+    // Define the relationship with the Category model
+    public function category()
+    {
+        return $this->belongsTo(CategoryModel::class, 'category_id');
+    }
 
-     public function carts()
+    // Define the relationship with the Brand model
+    public function brand()
+    {
+        return $this->belongsTo(BrandModel::class, 'brand_id');
+    }
+
+    public function carts()
     {
         return $this->hasMany(CartModel::class, 'product_id');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(OrderModel::class, 'product_id', 'id');
     }
 }

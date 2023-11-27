@@ -5,7 +5,10 @@
 
         <!-- Breadcrumb area start -->
         <div class="bd-breadcrumb__area include__bg hero__overlay Breadcrumb__height d-flex align-items-center"
-            data-background="assets/img/hero/breadcrumb.jpg">
+            data-background="{{ asset('assets/img/hero/aboutus-breadcrumbs.jpg') }}"
+            style="background-position: bottom;
+            background-size: cover;
+            background-repeat: no-repeat">
             <div class="container fluid">
                 <div class="row">
                     <div class="col-xl-12">
@@ -38,7 +41,8 @@
                                     <div class="tab-pane fade show active" id="img-1" role="tabpanel"
                                         aria-labelledby="img-1-tab">
                                         <div class="product__details-thumb-big w-img">
-                                            <img src="{{ asset('public/storage/images/' . $product->image) }}" alt="">
+                                            <img src="{{ asset('public/storage/images/' . $product->image) }}"
+                                                alt="">
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="img-2" role="tabpanel" aria-labelledby="img-2-tab">
@@ -59,7 +63,7 @@
                         <div class="product__details-content pr-80">
                             <div class="product__details-top d-sm-flex align-items-center mb-5">
                                 <div class="product__details-tag mr-10">
-                                    <a href="#">nattuMaadu</a>
+                                    <a href="#">naattuMaadu</a>
                                 </div>
                             </div>
                             <h3 class="product__details-title">{{ $product->name }}</h3>
@@ -69,7 +73,7 @@
                             <p>{{ $product->description }}</p>
 
                             <div class="product__details-action mb-35">
-                                <div class="product__quantity">
+                                {{-- <div class="product__quantity">
                                     <div class="product-quantity-wrapper">
                                         <form action="#">
                                             <button class="cart-minus"><i class="fa-light fa-minus"></i></button>
@@ -77,40 +81,34 @@
                                             <button class="cart-plus"><i class="fa-light fa-plus"></i></button>
                                         </form>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="product__add-cart">
-                                    <a href="javascript:void(0)" class="bd-fill__btn cart-btn"><i
-                                            class="fa-solid fa-basket-shopping"></i> Add To Cart</a>
+                                    <a href="javascript:void(0)" class="bd-fill__btn cart-btn" data-toggle="tooltip"
+                                        data-placement="top" title="Quick Shop"
+                                        onclick="setProductData({{ $product->toJson() }})" data-bs-toggle="modal"
+                                        data-bs-target="#productmodal"><i class="fa-solid fa-basket-shopping"></i> BUY
+                                        NOW</a>
                                 </div>
-                                <div class="product__add-wish">
+                                {{-- <div class="product__add-wish">
                                     <a href="#" class="product__add-wish-btn"><i class="fa-solid fa-heart"></i></a>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="product__details-meta mb-20">
 
                                 <div class="categories">
-                                    <span>Categories:</span> <a href="#">Milk,</a> <a href="#">Cream,</a> <a
-                                        href="#">Fermented.</a>
+                                    <span>Categories:</span> {{ $product->category->name }}
                                 </div>
                                 <div class="tag">
-                                    <span>Tags:</span> <a href="#"> Cheese,</a> <a href="#">Custard,</a> <a
-                                        href="#">Frozen</a>
+                                    <span>Brand:</span> {{ $product->brand->name }}
                                 </div>
                             </div>
-                            <div class="product__details-share">
-                                <span>Share:</span>
-                                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                                <a href="#"><i class="fa-brands fa-behance"></i></a>
-                                <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
                 <div class="product__details-additional-info pt-120">
                     <div class="row">
-                        <div class="col-xxl-3 col-xl-4 col-lg-4">
+                        {{-- <div class="col-xxl-3 col-xl-4 col-lg-4">
                             <div class="product__details-more-tab mr-15">
                                 <nav>
                                     <div class="nav nav-tabs flex-column " id="productmoretab" role="tablist">
@@ -133,8 +131,8 @@
                                     </div>
                                 </nav>
                             </div>
-                        </div>
-                        <div class="col-xxl-9 col-xl-8 col-lg-8">
+                        </div> --}}
+                        {{-- <div class="col-xxl-9 col-xl-8 col-lg-8">
                             <div class="product__details-more-tab-content">
                                 <div class="tab-content" id="productmorecontent">
                                     <div class="tab-pane fade show active" id="nav-description" role="tabpanel"
@@ -451,13 +449,13 @@
                             </div>
                         </div>
                     </div>
+                </div> --}}
+                    </div>
                 </div>
-            </div>
-        </div>
-        <!-- Product details area end -->
+                <!-- Product details area end -->
 
-        <!-- Related product area start -->
-        <section class="bd-related__product-area p-relative z-index-1 fix grey-bg pt-120 pb-70">
+                <!-- Related product area start -->
+                {{-- <section class="bd-related__product-area p-relative z-index-1 fix grey-bg pt-120 pb-70">
             <div class="container">
                 <div class="row">
                     <div class="bd-section__title-wrapper mb-50">
@@ -615,8 +613,118 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Related product area end -->
+        </section> --}}
+                <!-- Related product area end -->
 
     </main>
+    @include('web.layouts.modal')
 @endsection
+
+@push('scripts')
+    <script>
+        var quantity;
+        var sizeValue = undefined;
+
+        function setProductData(product) {
+            $.ajax({
+                type: 'GET',
+                url: '/model/' + product.id,
+                data: {
+                    "_token": "{{ csrf_token() }}", // Include CSRF token
+                },
+                success: function(response) {
+                    console.log(response);
+                    updateModalContent(response.productDetails, response.sizePriceArray);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error in AJAX call:', status, error);
+                    console.log(xhr);
+                }
+            });
+        }
+
+
+        function updateModalContent(productDetails, sizePriceArray) {
+
+            function handleAddToCartClick(e) {
+                e.preventDefault();
+                console.log("cart added");
+                addToCart(productDetails.id, sizeValue, quantity, productDetails.price);
+            }
+
+            var productModal = new bootstrap.Modal(document.getElementById('productmodal'));
+
+            document.getElementById('productModalTitle').innerText = productDetails.name;
+            document.getElementById('productModalPrice').innerText = '₹' + productDetails.price;
+            document.getElementById('productModalImage').src = '{{ asset('public/storage/images/') }}' + '/' +
+                productDetails.image;
+
+            var addToCartButton = document.getElementById('addToCartBtn');
+            if (addToCartButton) {
+                addToCartButton.addEventListener('click', handleAddToCartClick)
+            }
+
+            var sizesList = document.getElementById('sizesList');
+            var sizeContainer = document.getElementById('sizeContainer');
+
+            sizesList.innerHTML = '';
+
+            for (var size in sizePriceArray) {
+                var listItem = document.createElement('li');
+                listItem.className = 'list-group-item d-flex justify-content-between align-items-center mb-3';
+                listItem.innerHTML = size +
+                    '<button class="badge bg-primary cursor-pointer" ' +
+                    'style="padding: 10px 14px; font-size: 14px;"' +
+                    'onclick="updateTotalPrice(' + sizePriceArray[size] + ', ' + quantity + ')">' +
+                    '₹' + sizePriceArray[size] + '</button>';
+
+                sizesList.appendChild(listItem);
+            }
+
+
+            $(".cart-plus").unbind().click(function(e) {
+                e.preventDefault();
+                var $input = $(this).parent().find("input");
+                $input.val(parseInt($input.val()) + 1);
+                $input.change();
+                updateTotalPrice(productDetails.price, $input.val());
+                return false;
+            });
+
+            $(".cart-minus").unbind().click(function(e) {
+                e.preventDefault();
+                var $input = $(this).parent().find("input");
+                if (parseInt($input.val()) > 1) {
+                    $input.val(parseInt($input.val()) - 1);
+                    $input.change();
+                    updateTotalPrice(productDetails.price, $input.val());
+                }
+                return false;
+            });
+
+            $(".cart-input").unbind().change(function(e) {
+                e.preventDefault();
+                quantity = parseFloat($(this).val())
+                updateTotalPrice(productDetails.price, $(this).val());
+            });
+
+            var productModal = new bootstrap.Modal(document.getElementById('productmodal'));
+
+            // Attach event listener for when the modal is hidden
+            productModal._element.addEventListener('hide.bs.modal', function() {
+                $("#quantityInput").val(1)
+                if (addToCartButton) {
+                    addToCartButton.removeEventListener('click', handleAddToCartClick);
+                }
+            });
+        }
+
+        function updateTotalPrice(basePrice, selectedSize) {
+            // console.log('val', sizeValue)
+            sizeValue = basePrice;
+            var totalPrice = quantity ? basePrice * quantity : basePrice;
+            console.log('total', totalPrice)
+            $("#productModalPrice").text('₹' + totalPrice.toFixed(2));
+        }
+    </script>
+@endpush

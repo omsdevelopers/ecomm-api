@@ -181,9 +181,9 @@
             display: flex;
             align-items: center;
             justify-content: space-around;
-            @media #{$xs}{
-                display: none;
-            }
+            // @media #{$xs}{
+            //     // display: block;
+            // }
         }
     }
     &__hamburger-icon {

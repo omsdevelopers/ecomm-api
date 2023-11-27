@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="bd-hero__area">
-  
+
         <div class="hero__active swiper-container">
 
             <div class="swiper-wrapper">
@@ -21,8 +21,8 @@
                                                 challenges around animal welfare, farm<br>
                                                 profitability, food safety and work efficiency.</p>
                                             <div class="bd-hero__btn-wrapper animated fadeInDown">
-                                                <a class="bd-hero__btn-1" href="about.html">Our Products</a>
-                                                <a class="bd-hero__btn-2" href="about.html">about us</a>
+                                                <a class="bd-hero__btn-1" href="{{ route('about') }}">Our Products</a>
+                                                <a class="bd-hero__btn-2" href="{{ route('about') }}">about us</a>
                                             </div>
                                         </div>
                                     </div>
@@ -89,7 +89,63 @@
     <!-- Hero area start -->
 
     <!-- Features area start -->
+    
+    
     <section class="bd-features__area" data-background="assets/img/bg/section-bg.jpg">
+
+        <section class="bd-about__area pt-120 pb-120" data-background="assets/img/bg/section-bg.jpg">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="bd-about__image-wrapper p-relative mb-60">
+                            <div>
+                                @php $featuredProduct = $feature->first(); @endphp
+    
+                                <img  width="300" src="{{ asset('public/storage/images/' . $featuredProduct->image) }}"
+                                    alt="product-img">
+                            </div>
+    
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="bd-about__content-wrapper mb-60">
+                            <div class="bd-section__title-wrapper mb-40">
+                                <span class="bd-sub__title">Feature Product</span>
+                                @if ($feature->count() > 0)
+                                    @php $featuredProduct = $feature->first(); @endphp
+    
+                                    <h2 class="bd-section__title mb-30">{{ $featuredProduct->name }}</h2>
+                                    <p class="bd-section__paragraph">{{ $featuredProduct->description }}</p>
+                                    {{-- <div
+                                        style="text-align: left; position: absolute; left: 300px; top: 40px; width: calc(100% - 300px);">
+                                        <h2 class="text-white" style="font-size: 30px;">{{ $featuredProduct->name }}</h2>
+                                        <hr class="text-white" style="width: 50%;">
+                                        <h2 class="text-white">&#x20B9;{{ $featuredProduct->price }}</h2>
+                                        <p class="text-white" style="width:50%">{{ $featuredProduct->description }}</p>
+    
+                                        <div style="margin-top: 30px;">
+                                            <p class="text-white">CATEGORY: {{ $featuredProduct->category->name }}</p>
+                                            <p class="text-white">Brand: {{ $featuredProduct->brand->name }}</p>
+                                        </div>
+                                    </div> --}}
+    
+                                @else
+                                    <!-- Display a message or default content when no featured product is available -->
+                                    <p>No featured product available.</p>
+                                @endif
+                               
+                            </div>
+                       
+                            <a class="bd-theme__btn-1"  style="padding: 11px; width: 160px; cursor: pointer; pointer-events: auto;"
+                            data-toggle="tooltip" data-placement="top" title="Quick Shop"
+                            onclick="setProductData({{ $featuredProduct->toJson() }})" data-bs-toggle="modal"
+                            data-bs-target="#productmodal">BUY NOW</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div class="bd-features__wrapper">
             <div class="bd-features__top">
                 <span>Best Products</span>
@@ -322,54 +378,61 @@
             </div>
         </div>
     </section>
-    <!-- Service cta area end -->
 
+    <!-- Service cta area end -->
+    {{-- 
     <div class="mt-10">
         <div class="fluid">
             <div class="row">
-                <div class="col-xl-2 col-md-4 col-sm-12">
+                <div class="col-xl-2 col-md-4 col-sm-12" style="z-index: 1">
+
                     <div>
-                        <img src="assets/img/new/neii.png" width="600" alt="service-icon">
+                        @php $featuredProduct = $feature->first(); @endphp
+
+                        <img width="600" src="{{ asset('public/storage/images/' . $featuredProduct->image) }}"
+                            alt="product-img">
                     </div>
                 </div>
 
                 <div class="col-xl-10 col-md-8 col-sm-12"
-                    style="background-color:#f5a64a; min-height: 50vh; z-index: -1; position:relative;">
-                    <div style="text-align: left; position: absolute; left: 300px; top: 40px; width: calc(100% - 300px);">
-                        <h2 class="text-white" style="font-size: 30px;">NattuMadu Ghee</h2>
-                        <hr class="text-white" style="width: 50%;">
-                        <h2 class="text-white">$10</h2>
-                        <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                            do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                            anim id est laborum.</p>
+                    style="background-color:#f5a64a; min-height: 50vh; z-index: 0; position:relative;">
+                    @if ($feature->count() > 0)
+                        @php $featuredProduct = $feature->first(); @endphp
+                        <div
+                            style="text-align: left; position: absolute; left: 300px; top: 40px; width: calc(100% - 300px);">
+                            <h2 class="text-white" style="font-size: 30px;">{{ $featuredProduct->name }}</h2>
+                            <hr class="text-white" style="width: 50%;">
+                            <h2 class="text-white">&#x20B9;{{ $featuredProduct->price }}</h2>
+                            <p class="text-white" style="width:50%">{{ $featuredProduct->description }}</p>
 
-                        <div style="margin-top: 30px;">
-                            <p class="text-white">CATEGORY: Ghee</p>
-                            <p class="text-white">TAGS: Diary</p>
+                            <div style="margin-top: 30px;">
+                                <p class="text-white">CATEGORY: {{ $featuredProduct->category->name }}</p>
+                                <p class="text-white">Brand: {{ $featuredProduct->brand->name }}</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div style="width:50%; margin:auto; position:absolute; bottom:-15px; left:20%;">
-                        <button class="btn btn-dark"
-                            style="padding: 11px; width: 160px; cursor: pointer; pointer-events: auto;">ADD TO
-                            CART</button>
-                        <button class="btn btn-dark"
-                            style="padding: 9px; margin-left: 7px; cursor: pointer; pointer-events: auto;">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" style="width:30px;">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                            </svg>
-                        </button>
-                    </div>
+
+
+                        <div style="width:50%; margin:auto; position:absolute; bottom:-15px; left:20%;">
+                            <button class="btn btn-dark"
+                                style="padding: 11px; width: 160px; cursor: pointer; pointer-events: auto;"
+                                data-toggle="tooltip" data-placement="top" title="Quick Shop"
+                                onclick="setProductData({{ $featuredProduct->toJson() }})" data-bs-toggle="modal"
+                                data-bs-target="#productmodal">ADD TO
+                                CART</button>
+                        </div>
+                    @else
+                        <!-- Display a message or default content when no featured product is available -->
+                        <p>No featured product available.</p>
+                    @endif
                 </div>
-
             </div>
         </div>
-    </div>
+
+    </div> --}}
+
+   
+
 
 
     <!-- Product area start -->
@@ -397,16 +460,15 @@
                                 <span class="bd-product__new-price">₹{{ $product->price }}</span>
                             </div>
                             <div class="bd-product__action">
-                                <a class="cart-btn" href="javascript:void(0)" data-toggle="tooltip" data-placement="top"
-                                    title="Quick View" data-bs-toggle="modal"><i class="fal fa-cart-arrow-down"></i></a>
+                                {{-- <a class="cart-btn" href="javascript:void(0)" data-toggle="tooltip" data-placement="top"
+                                    title="Quick View" data-bs-toggle="modal"><i class="fal fa-cart-arrow-down"></i></a> --}}
 
                                 <a href="#" data-toggle="tooltip" data-placement="top" title="Quick Shop"
                                     onclick="setProductData({{ $product->toJson() }})" data-bs-toggle="modal"
                                     data-bs-target="#productmodal"><i class="fal fa-eye"></i></a>
-
-                                <a class="wishlist-btn" href="javascript:void(0)" data-toggle="tooltip"
+                                {{-- <a class="wishlist-btn" href="javascript:void(0)" data-toggle="tooltip"
                                     data-placement="top" title="Quick Wishlist" data-bs-toggle="modal"> <i
-                                        class="fal fa-heart"></i></a>
+                                        class="fal fa-heart"></i></a> --}}
                             </div>
                         </div>
                     </div>
@@ -415,11 +477,11 @@
 
 
 
-            <div class="row">
+            {{-- <div class="row">
                 <div class="bd-product__btn mt-20 mb-30 d-flex justify-content-center">
                     <a class="bd-theme__btn-4" href="shop.html">more proudcts</a>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
 

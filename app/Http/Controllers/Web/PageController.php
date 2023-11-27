@@ -8,6 +8,7 @@ use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PageController extends Controller
@@ -87,6 +88,8 @@ class PageController extends Controller
         foreach ($cartItems as $item) {
             $subtotal += $item->size ? $item->size * ($item->quantity ?: 1) : $item->price * ($item->quantity ?: 1);
         }
+        
+        Log::info('checkout : ' . json_encode($cartItems));
 
         return view('web.screens.checkout', [
             'header_title' => "Checkout",

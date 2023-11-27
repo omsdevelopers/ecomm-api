@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Web\ProductDetailsController;
 use App\Http\Controllers\web\CartController;
 use App\Http\Controllers\web\CheckoutController;
+use App\Http\Controllers\web\OrderDetailsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,3 +103,7 @@ Route::middleware(['web'])->group(function () {
 Route::get('/checkout/{id}', [PageController::class, 'checkout'])->name('checkout');
 Route::post('/place-order', [CheckoutController::class, 'placeOrder'])->name('place-order');
 Route::post('razorpay-payment',[CheckoutController::class,'store'])->name('razorpay.payment.store');
+
+//orders
+
+Route::get('my-orders', [OrderDetailsController::class, 'myOrders'])->name('my-orders');
