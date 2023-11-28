@@ -89,8 +89,8 @@
     <!-- Hero area start -->
 
     <!-- Features area start -->
-    
-    
+
+
     <section class="bd-features__area" data-background="assets/img/bg/section-bg.jpg">
 
         <section class="bd-about__area pt-120 pb-120" data-background="assets/img/bg/section-bg.jpg">
@@ -100,12 +100,12 @@
                         <div class="bd-about__image-wrapper p-relative mb-60">
                             <div>
                                 @php $featuredProduct = $feature->first(); @endphp
-    
-                                <img  width="300" src="{{ asset('public/storage/images/' . $featuredProduct->image) }}"
+
+                                <img width="300" src="{{ asset('public/storage/images/' . $featuredProduct->image) }}"
                                     alt="product-img">
                             </div>
-    
-                           
+
+
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -114,7 +114,7 @@
                                 <span class="bd-sub__title">Feature Product</span>
                                 @if ($feature->count() > 0)
                                     @php $featuredProduct = $feature->first(); @endphp
-    
+
                                     <h2 class="bd-section__title mb-30">{{ $featuredProduct->name }}</h2>
                                     <p class="bd-section__paragraph">{{ $featuredProduct->description }}</p>
                                     {{-- <div
@@ -129,18 +129,18 @@
                                             <p class="text-white">Brand: {{ $featuredProduct->brand->name }}</p>
                                         </div>
                                     </div> --}}
-    
                                 @else
                                     <!-- Display a message or default content when no featured product is available -->
                                     <p>No featured product available.</p>
                                 @endif
-                               
+
                             </div>
-                       
-                            <a class="bd-theme__btn-1"  style="padding: 11px; width: 160px; cursor: pointer; pointer-events: auto;"
-                            data-toggle="tooltip" data-placement="top" title="Quick Shop"
-                            onclick="setProductData({{ $featuredProduct->toJson() }})" data-bs-toggle="modal"
-                            data-bs-target="#productmodal">BUY NOW</a>
+
+                            <a class="bd-theme__btn-1"
+                                style="padding: 11px; width: 160px; cursor: pointer; pointer-events: auto;"
+                                data-toggle="tooltip" data-placement="top" title="Quick Shop"
+                                onclick="setProductData({{ $featuredProduct->toJson() }})" data-bs-toggle="modal"
+                                data-bs-target="#productmodal">BUY NOW</a>
                         </div>
                     </div>
                 </div>
@@ -218,12 +218,26 @@
                     <div class="bd-about__content-wrapper mb-60">
                         <div class="bd-section__title-wrapper mb-40">
                             <span class="bd-sub__title">About Us</span>
-                            <h2 class="bd-section__title mb-30">Know About Our
-                                Farm & History</h2>
-                            <p class="bd-section__paragraph">We have been working in this industry for more than 30
-                                years with
-                                trust and honesty. All hands must be on deck if we are to achieve
-                                our goal of improving global nutrition.</p>
+                            <h2 class="bd-section__title mb-30">NaattuLife</h2>
+                            <p class="bd-section__paragraph">In the heart of linguistic antiquity, within the enchanting
+                                folds of the world's ancient tongue, Tamil, a profound concept emerges - "Naattu." An
+                                expression that transcends mere words, "Naattu" encapsulates the essence of native,
+                                indigenous, and the undying spirit of tradition. It is a linguistic sanctuary where the
+                                echoes of time-honored wisdom resonate, and where the primal "aadhi" or originality is
+                                celebrated with unwavering reverence. <br><br>
+
+                                "NaattuLife," a name that resonates with this sacred resonance, becomes the vessel through
+                                which the timeless heritage of "Naattu" is breathed anew into the contemporary world. It
+                                stands as a beacon of unwavering commitment to the preservation of nature's original
+                                blueprint, where no genetic changes have marred the sanctity of creation. In this sanctuary,
+                                "NaattuLife" takes root, and from its nurturing embrace, emerges a plenty of products
+                                designed with a singular purpose - to illuminate the path to a healthier life. <br><br>
+
+                                With a dedication to the unadulterated and the authentic, it offers the bounty of
+                                time-tested treasures, infused with the wisdom of generations. It is here, in "NaattuLife,"
+                                that the age-old promise of wellness and vitality finds a modern expression, beckoning all
+                                to embrace the heritage of their roots, and to partake in a life of abundant health.
+                            </p>
                         </div>
                         <div class="bd-about__features-wrapper mb-25">
                             <div class="bd-about__features">
@@ -431,7 +445,7 @@
 
     </div> --}}
 
-   
+
 
 
 
@@ -501,7 +515,6 @@
                                 work difference</h2>
                         </div>
                         <div class="bd-video__btn-wrapper">
-                            <a class="bd-theme__btn-2" href="{{ route('contact') }}">make appointment</a>
                             <a class="bd-theme__btn-1" href="{{ route('contact') }}">get a quote</a>
                         </div>
                     </div>
@@ -514,7 +527,7 @@
 
 
     <!-- Cta area start -->
-    <section class="bd-cta__area p-relative z-index-11 pt-120 pb-60" data-background="assets/img/bg/cta-bg.jpg">
+    {{-- <section class="bd-cta__area p-relative z-index-11 pt-120 pb-60" data-background="assets/img/bg/cta-bg.jpg">
         <div class="bd-cta__shape">
             <img src="assets/img/cta/shap-01.png" alt="cta-shape">
         </div>
@@ -603,7 +616,7 @@
             </div>
         </div>
 
-    </section>
+    </section> --}}
 
     @include('web.layouts.modal')
 @endsection
@@ -634,13 +647,26 @@
 
         function updateModalContent(productDetails, sizePriceArray) {
 
+            console.log(productDetails.size)
+            const sizeAndPrices = productDetails.size.split(', ');
+
+            const prices = sizeAndPrices.map(pair => {
+                const [size, price] = pair.split(':');
+                return parseInt(price);
+            });
+
+            const minPrice = Math.min(...prices);
+
+            console.log(minPrice);
+            sizeValue = minPrice;
+
             function handleAddToCartClick(e) {
                 e.preventDefault();
                 console.log("cart added");
                 addToCart(productDetails.id, sizeValue, quantity, productDetails.price);
             }
 
-            var productModal = new bootstrap.Modal(document.getElementById('productmodal'));
+            // var productModal = new bootstrap.Modal(document.getElementById('productmodal'));
 
             document.getElementById('productModalTitle').innerText = productDetails.name;
             document.getElementById('productModalPrice').innerText = '₹' + productDetails.price;
@@ -670,37 +696,34 @@
             }
 
 
-            $(".cart-plus").unbind().click(function(e) {
-                e.preventDefault();
-                var $input = $(this).parent().find("input");
-                $input.val(parseInt($input.val()) + 1);
-                $input.change();
-                updateTotalPrice(productDetails.price, $input.val());
-                return false;
-            });
+            // $(".cart-plus").unbind().click(function(e) {
+            //     e.preventDefault();
+            //     var $input = $(this).parent().find("input");
+            //     $input.val(parseInt($input.val()) + 1);
+            //     $input.change();
+            //     updateTotalPrice(productDetails.price, $input.val());
+            //     return false;
+            // });
 
-            $(".cart-minus").unbind().click(function(e) {
-                e.preventDefault();
-                var $input = $(this).parent().find("input");
-                if (parseInt($input.val()) > 1) {
-                    $input.val(parseInt($input.val()) - 1);
-                    $input.change();
-                    updateTotalPrice(productDetails.price, $input.val());
-                }
-                return false;
-            });
+            // $(".cart-minus").unbind().click(function(e) {
+            //     e.preventDefault();
+            //     var $input = $(this).parent().find("input");
+            //     if (parseInt($input.val()) > 1) {
+            //         $input.val(parseInt($input.val()) - 1);
+            //         $input.change();
+            //         updateTotalPrice(productDetails.price, $input.val());
+            //     }
+            //     return false;
+            // });
 
             $(".cart-input").unbind().change(function(e) {
                 e.preventDefault();
-                quantity = parseFloat($(this).val())
-                updateTotalPrice(productDetails.price, $(this).val());
+                quantity = parseFloat($(this).val());
+                updateTotalPrice(sizeValue, quantity);
             });
 
-            var productModal = new bootstrap.Modal(document.getElementById('productmodal'));
-
-            // Attach event listener for when the modal is hidden
-            productModal._element.addEventListener('hide.bs.modal', function() {
-                $("#quantityInput").val(1)
+            $('#productmodal').on('hide.bs.modal', function() {
+                $("#quantityInput").val(1);
                 if (addToCartButton) {
                     addToCartButton.removeEventListener('click', handleAddToCartClick);
                 }
@@ -708,9 +731,14 @@
         }
 
         function updateTotalPrice(basePrice, selectedSize) {
-            // console.log('val', sizeValue)
+            console.log('val', sizeValue)
             sizeValue = basePrice;
+            console.log('price', basePrice)
             var totalPrice = quantity ? basePrice * quantity : basePrice;
+
+            // if (!isNaN(totalPrice) && quantity > 1) {
+            //     totalPrice = totalPrice * quantity;
+            // }
             console.log('total', totalPrice)
             $("#productModalPrice").text('₹' + totalPrice.toFixed(2));
         }

@@ -20,7 +20,7 @@
                 <div class="offcanvas__top mb-40 d-flex justify-content-between align-items-center">
                     <div class="offcanvas__logo logo">
                         <a href="{{ route('home') }}">
-                            <img src="{{ asset('assets/img/logo/logo.png') }}" alt="logo">
+                            <img src="{{ asset('assets/img/logo/nmlogo.jpg') }}" alt="logo">
                         </a>
                     </div>
                     <div class="offcanvas__close">
@@ -29,59 +29,14 @@
                         </button>
                     </div>
                 </div>
-                <div class="offcanvas__search mb-25">
+                {{-- <div class="offcanvas__search mb-25">
                     <form action="#">
                         <input type="text" placeholder="What are you searching for?">
                         <button type="submit"><i class="far fa-search"></i></button>
                     </form>
-                </div>
+                </div> --}}
                 <div class="mobile-menu fix mb-40"></div>
-                <div class="sidebar__thumb d-none d-lg-block mb-20">
-                    <div class="row gx-2">
-                        <div class="col-4">
-                            <div class="sidebar__single-thumb w-img mb-10">
-                                <a class="popup-image" href="assets/img/gallery/thumb/06.jpg">
-                                    <img src="assets/img/gallery/thumb/06.jpg" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="sidebar__single-thumb w-img mb-10">
-                                <a class="popup-image" href="assets/img/gallery/thumb/07.jpg">
-                                    <img src="assets/img/gallery/thumb/07.jpg" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="sidebar__single-thumb w-img mb-10">
-                                <a class="popup-image" href="assets/img/gallery/thumb/08.jpg">
-                                    <img src="assets/img/gallery/thumb/08.jpg" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="sidebar__single-thumb w-img mb-10">
-                                <a class="popup-image" href="assets/img/gallery/thumb/09.jpg">
-                                    <img src="assets/img/gallery/thumb/09.jpg" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="sidebar__single-thumb w-img mb-10">
-                                <a class="popup-image" href="assets/img/gallery/thumb/10.jpg">
-                                    <img src="assets/img/gallery/thumb/10.jpg" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="sidebar__single-thumb w-img mb-10">
-                                <a class="popup-image" href="assets/img/gallery/thumb/01.jpg">
-                                    <img src="assets/img/gallery/thumb/01.jpg" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
                 <div class="offcanvas__contact mt-30 mb-20">
                     <h4>Contact Info</h4>
                     <ul>
@@ -109,7 +64,7 @@
                             </div>
                             <div class="offcanvas__contact-text">
                                 <a href="tel:+012-345-6789"><span
-                                        class="mailto:support@mail.com">support@mail.com</span></a>
+                                        class="mailto:naattulife@gmail.com">naattulife@gmail.com</span></a>
                             </div>
                         </li>
                     </ul>
@@ -162,9 +117,9 @@
                     <div class="bd-header__contact-spacing">
                         <div class="bd-header__contact">
                             <ul>
-                                <li><a href="mailto:info@webmail.com"><i
-                                            class="fa-solid fa-envelope-open"></i>info@webmail.com</a></li>
-                                <li><a href="tel:89789790899"><i class="fa-solid fa-phone"></i>999 99 99 999</a></li>
+                                <li><a href="mailto:naattulife@gmail.com"><i
+                                            class="fa-solid fa-envelope-open"></i>naattulife@gmail.com</a></li>
+                                <li><a href="tel:6364650068"><i class="fa-solid fa-phone"></i>+91 63 64 65 00 68</a></li>
                             </ul>
                         </div>
                     </div>
@@ -190,7 +145,7 @@
                 <div class="col-xl-2 col-lg-2 col-md-4 col-4 p-0">
                     <div class="bd-header__logo">
                         <a href="{{ route('home') }}">
-                            <img src="{{ asset('assets/img/logo/logo.png') }}" alt="logo">
+                            <img src="{{ asset('assets/img/logo/nmlogo.jpg') }}" alt="logo">
                         </a>
                     </div>
                 </div>

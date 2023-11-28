@@ -42,8 +42,28 @@
                         <div class="bd-about__content-box-3 mb-60">
                             <div class="bd-section__title-wrapper mb-40">
                                 <span class="bd-sub__title">About Us</span>
-                                <h2 class="bd-section__title mb-25">Have More Than 20+ Years</h2>
-                                <p class="bd-section__paragraph">Nevertheless, akin to various agricultural ventures, NaattuMaadu Dairy Production Company encompasses a diverse spectrum of sizes. The most expansive dairy farms under our purview boast over 15,000 cows, while those with 1,000–5,000 cows are more prevalent. Ensure the formal registration of your dairy business with the relevant authorities.</p>
+                                <h2 class="bd-section__title mb-25">Taste and tradition</h2>
+                                <p class="bd-section__paragraph">In the tapestry of our existence, we are more than two
+                                    decades deep into the artistry of sales and marketing. Our journey intertwines
+                                    seamlessly with a four-decade-old saga, a milk-procuring company rooted in the
+                                    heartlands of Tamil Nadu. We are orchestrators of a daily symphony, drawing forth 40,000
+                                    liters of milk from the diverse tapestry of cow breeds, nurturing bonds with 2000
+                                    dedicated farmers.
+                                    <br><br> Our vast web encompasses over 300 milk collection centers, four
+                                    serene milk chilling sanctuaries, and a single epic factory. Yet, amid this crescendo of
+                                    abundance, we discovered a gentle whisper of rarity. The Indigenous cow, with its
+                                    graceful presence diminishing, posed an intricate challenge. The elixir of its milk was
+                                    but a droplet, a mere 600 liters, and the path to market its pure essence was steeped in
+                                    obscurity. <br><br>
+                                    We are custodians of hope, nurturing a sanctuary dedicated solely to Indigenous cow
+                                    milk. With just 600 precious liters, we awaken discerning palates, and each day, our
+                                    sanctuary grows stronger. <br><br>
+                                    In this, we glimpse the future – a future where our journey in desi cow milk stands
+                                    unwavering, reaching new heights in the premium segment. Welcome to our tale, where
+                                    tradition and innovation weave together, abundance and scarcity dance in harmony, and
+                                    the past and future unite.
+                                </p>
+
                             </div>
                             {{-- <div class="bd-author__border">
                                 <div class="bd-about__author">

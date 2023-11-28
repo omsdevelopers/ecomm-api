@@ -119,7 +119,6 @@
 @push('scripts')
     <script>
         function addToCart(productId, selectedSize, quantity, price) {
-
             $.ajax({
                 type: 'GET',
                 url: '/cart/' + productId,

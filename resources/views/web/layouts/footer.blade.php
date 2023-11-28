@@ -28,21 +28,16 @@
              <div class="col-xl-3 col-lg-4 col-md-6">
                 <div class="bd-footer__widget footer-col-2 mb-60">
                    <div class="bd-footer__title">
-                      <h4>Services</h4>
+                      <h4>Support</h4>
                    </div>
                    <div class="bd-footer__link">
                       <ul>
-                         <li><a href="#">Agriculture Foods</a></li>
-                         <li><a href="#">Eggs & Meets</a></li>
-                         <li><a href="#">Organic Vegetables</a></li>
-                         <li><a href="#">Fresh Milk</a></li>
-                         <li><a href="#">Pond & Sea Fish</a></li>
-                         <li><a href="#">House Hold</a></li>
-                         <li><a href="#">Cow Milk & Meat</a></li>
-                         <li><a href="#">Accessories</a></li>
-                         <li><a href="#">Accessories</a></li>
-                         <li><a href="#">Natural Wheats</a></li>
-                         <li><a href="#">Organic Food</a></li>
+                         <li><a href="{{route('terms')}}">Terms and conditions</a></li>
+                         <li><a href="{{route('privacy')}}">Privacy Policy</a></li>
+                         <li><a href="{{route('refund-policy')}}">Refund Policy</a></li>
+                         <li><a href="{{route('shipping')}}">Shipping</a></li>
+                         <li><a href="{{route('contact')}}">Contact Us</a></li>
+                         <li><a href="{{route('promotion')}}">NaattuLife</a></li>
                       </ul>
                    </div>
                 </div>
@@ -68,7 +63,7 @@
                             </div>
                             <div class="bd-footer__support-title">
                                <span>Emergency Service</span>
-                               <a href="tel:00011122233">999 99 99 999</a>
+                               <a href="tel:00011122233">63 64 65 00 68</a>
                             </div>
                          </div>
                       </div>

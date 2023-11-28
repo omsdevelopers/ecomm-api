@@ -97,4 +97,34 @@ class PageController extends Controller
             'subtotal' => $subtotal,
         ]);
     }
+
+    public function refundPolicy(){
+        return view('web.screens.refund-policy', [
+            'header_title' => "Refund Policy",
+        ]);
+    }
+
+    public function terms(){
+        return view('web.screens.terms', [
+            'header_title' => "Terms and condition",
+        ]);
+    }
+
+    public function privacy(){
+        return view('web.screens.privacy', [
+            'header_title' => "Privacy Policy",
+        ]);
+    }
+
+    public function shipping(){
+        return view('web.screens.shipping', [
+            'header_title' => "Shipping",
+        ]);
+    }
+
+    public function promotion(){
+        return view('web.screens.naattulife', [
+            'header_title' => "NaattuLife",
+        ]);
+    }
 }
