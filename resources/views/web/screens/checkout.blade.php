@@ -191,23 +191,23 @@
                                                 <th>Cart Subtotal</th>
                                                 <td><span class="amount">₹{{ $subtotal }}</span></td>
                                             </tr>
-                                            <tr class="shipping">
-                                                <th>Shipping</th>
-                                                <td>
-                                                    <ul>
-                                                        <li>
-                                                            <input type="radio" />
-                                                            <label>
-                                                                Flat Rate: <span class="amount">$7.00</span>
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <input type="radio" />
-                                                            <label>Free Shipping:</label>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
+                                            <!--<tr class="shipping">-->
+                                            <!--    <th>Shipping</th>-->
+                                            <!--    <td>-->
+                                            <!--        <ul>-->
+                                            <!--            <li>-->
+                                            <!--                <input type="radio" />-->
+                                            <!--                <label>-->
+                                            <!--                    Flat Rate: <span class="amount">$7.00</span>-->
+                                            <!--                </label>-->
+                                            <!--            </li>-->
+                                            <!--            <li>-->
+                                            <!--                <input type="radio" />-->
+                                            <!--                <label>Free Shipping:</label>-->
+                                            <!--            </li>-->
+                                            <!--        </ul>-->
+                                            <!--    </td>-->
+                                            <!--</tr>-->
                                             <tr class="order-total">
                                                 <th>Order Total</th>
                                                 <td><strong><span class="amount">₹{{ $subtotal }}</span></strong>
@@ -256,23 +256,23 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="paypalThree">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse" data-bs-target="#paypal"
-                                                    aria-expanded="false" aria-controls="paypal">
-                                                    PayPal
-                                                </button>
-                                            </h2>
-                                            <div id="paypal" class="accordion-collapse collapse"
-                                                aria-labelledby="paypalThree" data-bs-parent="#checkoutAccordion">
-                                                <div class="accordion-body">
-                                                    Pay via PayPal; you can pay with your credit card if you don’t have
-                                                    a
-                                                    PayPal account.
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <!--<div class="accordion-item">-->
+                                        <!--    <h2 class="accordion-header" id="paypalThree">-->
+                                        <!--        <button class="accordion-button collapsed" type="button"-->
+                                        <!--            data-bs-toggle="collapse" data-bs-target="#paypal"-->
+                                        <!--            aria-expanded="false" aria-controls="paypal">-->
+                                        <!--            PayPal-->
+                                        <!--        </button>-->
+                                        <!--    </h2>-->
+                                        <!--    <div id="paypal" class="accordion-collapse collapse"-->
+                                        <!--        aria-labelledby="paypalThree" data-bs-parent="#checkoutAccordion">-->
+                                        <!--        <div class="accordion-body">-->
+                                        <!--            Pay via PayPal; you can pay with your credit card if you don’t have-->
+                                        <!--            a-->
+                                        <!--            PayPal account.-->
+                                        <!--        </div>-->
+                                        <!--    </div>-->
+                                        <!--</div>-->
                                     </div>
                                     <input type="hidden" name="subtotal" value="{{ $subtotal }}">
                                     <div class="order-button-payment mt-20">

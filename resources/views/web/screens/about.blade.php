@@ -4,9 +4,8 @@
     <main>
         <!-- breadcrumb area start -->
         <div class="bd-breadcrumb__area hero__overlay Breadcrumb__height d-flex align-items-center"
-            data-background="assets/img/hero/aboutus-breadcrumbs.jpg"
+            data-background="assets/img/hero/bread.png"
             style="background-position: bottom;
-        background-size: cover;
         background-repeat: no-repeat">
             <div class="container fluid">
                 <div class="row">
@@ -16,12 +15,12 @@
                                 <ul class="trail-items">
                                     <li class="trail-item trail-begin"><span><a href="{{ route('home') }}">Home</a></span>
                                     </li>
-                                    <li class="trail-item trail-end"><span>About</span></li>
+                                    <li class="trail-item trail-end"><span>Taste and tradition</span></li>
                                 </ul>
                             </nav>
                         </div>
                         <div class="bd-breadcrumb__title">
-                            <h2>about us</h2>
+                            <h2>Taste and tradition</h2>
                         </div>
                     </div>
                 </div>
@@ -41,7 +40,7 @@
                     <div class="col-lg-6">
                         <div class="bd-about__content-box-3 mb-60">
                             <div class="bd-section__title-wrapper mb-40">
-                                <span class="bd-sub__title">About Us</span>
+                                {{-- <span class="bd-sub__title">Taste and tradition</span> --}}
                                 <h2 class="bd-section__title mb-25">Taste and tradition</h2>
                                 <p class="bd-section__paragraph">In the tapestry of our existence, we are more than two
                                     decades deep into the artistry of sales and marketing. Our journey intertwines

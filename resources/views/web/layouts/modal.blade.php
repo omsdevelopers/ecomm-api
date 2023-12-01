@@ -75,7 +75,7 @@
 
                                 <div class="container" id="sizeContainer">
                                     <h4>Sizes and Prices</h4>
-                                    <ul id="sizesList" class="list-group">
+                                    <ul id="sizesList" class="list-group" style="flex-direction: row; flex-wrap: wrap">
                                         <!-- Sizes and prices will be dynamically added here using JavaScript -->
                                     </ul>
                                 </div>

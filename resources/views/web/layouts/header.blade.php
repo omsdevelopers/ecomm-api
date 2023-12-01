@@ -20,7 +20,7 @@
                 <div class="offcanvas__top mb-40 d-flex justify-content-between align-items-center">
                     <div class="offcanvas__logo logo">
                         <a href="{{ route('home') }}">
-                            <img src="{{ asset('assets/img/logo/nmlogo.jpg') }}" alt="logo">
+                            <img src="{{ asset('assets/img/logo/nmlogo.png') }}" alt="logo">
                         </a>
                     </div>
                     <div class="offcanvas__close">
@@ -36,7 +36,7 @@
                     </form>
                 </div> --}}
                 <div class="mobile-menu fix mb-40"></div>
-               
+
                 <div class="offcanvas__contact mt-30 mb-20">
                     <h4>Contact Info</h4>
                     <ul>
@@ -46,8 +46,9 @@
                             </div>
                             <div class="offcanvas__contact-text">
                                 <a target="_blank"
-                                    href="https://www.google.com/maps/place/Dhaka/@23.7806207,90.3492859,12z/data=!3m1!4b1!4m5!3m4!1s0x3755b8b087026b81:0x8fa563bbdd5904c2!8m2!3d23.8104753!4d90.4119873">12/A,
-                                    India, TN</a>
+                                    href="https://www.google.com/maps/place/Dhaka/@23.7806207,90.3492859,12z/data=!3m1!4b1!4m5!3m4!1s0x3755b8b087026b81:0x8fa563bbdd5904c2!8m2!3d23.8104753!4d90.4119873">Naattu
+                                    The Native Food company Private Limited 53,Nehru Colony Mahalingapuram Pollachi
+                                    Coimbatore Tamilnadu -642109</a>
                             </div>
                         </li>
                         <li class="d-flex align-items-center">
@@ -55,7 +56,7 @@
                                 <i class="far fa-phone"></i>
                             </div>
                             <div class="offcanvas__contact-text">
-                                <a href="tel:+088889797697">999 99 99 999</a>
+                                <a href="tel:63 64 65 00 68">63 64 65 00 68</a>
                             </div>
                         </li>
                         <li class="d-flex align-items-center">
@@ -110,7 +111,7 @@
 <!-- Header area start -->
 <header>
     <!-- Header top area start -->
-    <div class="bd-header__top-area pg-bg d-none d-md-block">
+    <div class="bd-header__top-area pg-bg d-none d-md-block" style="background: #451C00;">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-8 col-lg-8 col-md-9 col-8">
@@ -119,7 +120,8 @@
                             <ul>
                                 <li><a href="mailto:naattulife@gmail.com"><i
                                             class="fa-solid fa-envelope-open"></i>naattulife@gmail.com</a></li>
-                                <li><a href="tel:6364650068"><i class="fa-solid fa-phone"></i>+91 63 64 65 00 68</a></li>
+                                <li><a href="tel:6364650068"><i class="fa-solid fa-phone"></i>+91 63 64 65 00 68</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -145,7 +147,7 @@
                 <div class="col-xl-2 col-lg-2 col-md-4 col-4 p-0">
                     <div class="bd-header__logo">
                         <a href="{{ route('home') }}">
-                            <img src="{{ asset('assets/img/logo/nmlogo.jpg') }}" alt="logo">
+                            <img src="{{ asset('assets/img/logo/nmlogo.png') }}" alt="logo">
                         </a>
                     </div>
                 </div>
@@ -155,13 +157,16 @@
                             <nav id="mobile-menu">
                                 <ul>
                                     <li>
-                                        <a href={{ route('home') }}>Home</a>
+                                        <a href={{ route('home') }}>NaattuLife</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('about') }}">About</a>
+                                        <a href="{{ route('about') }}">Taste and tradition</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('contact') }}">Contact</a>
+                                        <a href="{{ route('gallery') }}">A visual ode</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('contact') }}">Quill & Platter</a>
                                     </li>
 
                                     <li>
@@ -212,12 +217,14 @@
                 <div class="col-xl-2 col-lg-1 col-md-4 col-8">
                     <div class="bd-header__right d-flex align-items-center justify-content-end">
                         <div class="bd-header__action">
-                            <div class="" style="height: 80px;
+                            <div class=""
+                                style="height: 80px;
                             width: 80px;
-                            background: #eddd5e;
+                            background: #DFBE91;
                             display: flex;
                             align-items: center;
-                            justify-content: space-around;" onclick="cart()">
+                            justify-content: space-around;"
+                                onclick="cart()">
                                 <button class="shoping__toggle">
                                     <img src="{{ asset('assets/img/icon/cart-icon.png') }}" alt="cart-icon">
                                 </button>

@@ -89,16 +89,6 @@
 
 
         <li class="nav-item">
-          <a href="{{url('admin')}}" class="nav-link">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-              Admin Login
-
-            </p>
-          </a>
-        </li>
-
-        <li class="nav-item">
           <a href="{{url('admin/dashboard')}}" class="nav-link @if (Request::segment(2)=='dashboard') active @endif">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
@@ -113,7 +103,7 @@
             class="nav-link {{ request()->segment(2) === 'admin' ? 'active' : '' }}">
             <i class="nav-icon fas fa-th"></i>
             <p>
-              Admin
+              Users
 
             </p>
           </a>
@@ -159,6 +149,17 @@
 
             <p>
               Orders
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{route('gallery.index')}}"
+            class="nav-link {{ request()->segment(2) === 'gallery' ? 'active' : '' }}">
+            <i class="fa fa-tasks" aria-hidden="true"></i>
+
+            <p>
+              Gallery
             </p>
           </a>
         </li>

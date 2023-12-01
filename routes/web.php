@@ -12,6 +12,7 @@ use App\Http\Controllers\Web\PageController;
 use App\Http\Controllers\Web\LoginController;
 use App\Http\Controllers\Web\RegisterController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Web\ProductDetailsController;
 use App\Http\Controllers\web\CartController;
 use App\Http\Controllers\web\CheckoutController;
@@ -61,6 +62,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::delete('/orders/{orderId}', [OrdersController::class, 'destroy'])->name('orders.destroy');
     Route::get('admin/orders/{orderId}/invoice', [OrdersController::class, 'generateInvoice'])->name('orders.generateInvoice');
 
+    Route::resource('admin/gallery', GalleryController::class);
 
 });
 
@@ -82,6 +84,7 @@ Route::get('refund-policy', [PageController::class, 'refundPolicy'])->name('refu
 Route::get('terms', [PageController::class, 'terms'])->name('terms');
 Route::get('privacy', [PageController::class, 'privacy'])->name('privacy');
 Route::get('shipping', [PageController::class, 'shipping'])->name('shipping');
+Route::get('gallery', [PageController::class, 'gallery'])->name('gallery');
 
 //Promotional Page
 Route::get('naattulife', [PageController::class, 'promotion'])->name('promotion');   

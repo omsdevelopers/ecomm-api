@@ -4,8 +4,9 @@
     <main>
 
         <!-- Breadcrumb area start -->
-        <div class="bd-breadcrumb__area include__bg hero__overlay Breadcrumb__height d-flex align-items-center"
-            data-background="assets/img/hero/contact-breadcrumb.jpg">
+        <div class="bd-breadcrumb__area hero__overlay Breadcrumb__height d-flex align-items-center"
+            data-background="assets/img/hero/bread.png" style="background-position: bottom;
+    background-repeat: no-repeat">
             <div class="container fluid">
                 <div class="row">
                     <div class="col-xl-12">
@@ -14,12 +15,12 @@
                                 <ul class="trail-items">
                                     <li class="trail-item trail-begin"><span><a href="{{ route('home') }}">Home</a></span>
                                     </li>
-                                    <li class="trail-item trail-end"><span>contact</span></li>
+                                    <li class="trail-item trail-end"><span>Quill & Platter</span></li>
                                 </ul>
                             </nav>
                         </div>
                         <div class="bd-breadcrumb__title">
-                            <h2>get in touch</h2>
+                            <h2>Quill & Platter</h2>
                         </div>
                     </div>
                 </div>
@@ -77,8 +78,8 @@
                             </div>
                             <div class="bd-conatact__info-content">
                                 <h3>social connect</h3>
-                                <span><a href="https://www.skype.com">skype.com/humble.cc</a></span>
-                                <span><a href="https://www.linkdin.com">linkdin.com/hamble.007</a></span>
+                                <span><a href="https://www.skype.com">skype.com</a></span>
+                                <span><a href="https://www.linkdin.com">linkdin.com</a></span>
                             </div>
                         </div>
                     </div>
@@ -96,7 +97,8 @@
                             <div class="col-xl-6 col-lg-6">
                                 <div class="bd-google__map mb-60">
                                     <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116834.13673771221!2d90.41932575!3d23.780636450000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2sDhaka!5e0!3m2!1sen!2sbd!4v1659245455959!5m2!1sen!2sbd"></iframe>
+                                        src="https://www.google.com/maps/d/embed?mid=1FNUq6LcTk8z41dKq4c0SYmH1Dgw&hl=en&ehbc=2E312F"
+                                        width="640" height="480"></iframe>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6">
@@ -120,6 +122,8 @@
                                                     <textarea placeholder="Message"></textarea>
                                                     <i class="fa-solid fa-pen"></i>
                                                 </div>
+
+                                                <button class="bd-theme__btn-2 mt-10" type="submit">Submit</button>
                                             </form>
                                         </div>
                                     </div>

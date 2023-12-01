@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\CartModel;
+use App\Models\Gallery;
 use App\Models\ProductModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,13 +39,13 @@ class PageController extends Controller
 
     public function about()
     {
-        $data['header_title'] = "About-Us";
+        $data['header_title'] = "Taste and tradition";
         return view('web.screens.about', $data);
     }
 
     public function contact()
     {
-        $data['header_title'] = "Contact-Us";
+        $data['header_title'] = "Quill & Platter";
         return view('web.screens.contact', $data);
     }
 
@@ -125,6 +126,17 @@ class PageController extends Controller
     public function promotion(){
         return view('web.screens.naattulife', [
             'header_title' => "NaattuLife",
+        ]);
+    }
+
+    
+    public function gallery(){
+
+        $gallery = Gallery::all();
+
+        return view('web.screens.gallery', [
+            'galleries' => $gallery,
+            'header_title' => "A visual ode",
         ]);
     }
 }

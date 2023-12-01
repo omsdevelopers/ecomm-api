@@ -4,10 +4,9 @@
     <main>
 
         <!-- Breadcrumb area start -->
-        <div class="bd-breadcrumb__area include__bg hero__overlay Breadcrumb__height d-flex align-items-center"
-            data-background="assets/img/hero/aboutus-breadcrumbs.jpg" style="background-position: bottom;
-            background-size: cover;
-            background-repeat: no-repeat">
+        <div class="bd-breadcrumb__area hero__overlay Breadcrumb__height d-flex align-items-center"
+            data-background="assets/img/hero/bread.png" style="background-position: bottom;
+    background-repeat: no-repeat">
             <div class="container fluid">
                 <div class="row">
                     <div class="col-xl-12">
@@ -117,10 +116,12 @@
                                                 $subtotal += $itemPrice;
                                             }
                                         @endphp
-                                        <li>Subtotal <span></span>:  ₹{{ $subtotal }}</li>
-                                        <li>Total <span></span>:  ₹{{ $subtotal }}</li>
+                                        <li>Subtotal <span></span>: ₹{{ $subtotal }}</li>
+                                        <li>Total <span></span>: ₹{{ $subtotal }}</li>
                                     </ul>
-                                    <a class="bd-fill__btn-2" href="{{route('checkout',['id' => $cart->pluck('id')->implode(','), 'subtotal' => $subtotal]) }})}}">Proceed to checkout</a>
+                                    <a class="bd-fill__btn-2"
+                                        href="{{ route('checkout', ['id' => $cart->pluck('id')->implode(','), 'subtotal' => $subtotal]) }})}}">Proceed
+                                        to checkout</a>
                                 </div>
                             </div>
                         </div>
@@ -223,8 +224,8 @@
                     "_token": "{{ csrf_token() }}",
                 },
                 success: function(response, xhr) {
-              
-                        window.location.reload();
+
+                    window.location.reload();
                     // }
                 },
                 error: function(xhr, status, error) {

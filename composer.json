@@ -11,7 +11,7 @@
         "intervention/image": "^2.7",
         "laravel/fortify": "^1.18",
         "laravel/framework": "^10.10",
-        "laravel/sanctum": "^3.2",
+        "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "maatwebsite/excel": "^1.1",
         "razorpay/razorpay": "^2.8",

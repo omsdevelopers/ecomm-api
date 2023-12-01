@@ -25,9 +25,15 @@ class CategoryModel extends Model
             ->orderBy('category.id', 'desc')
             ->get();
     }
+    static public function getRecordall()
+    {
+        return self::select('category.*');
+
+    }
 
     public function products()
     {
         return $this->hasMany(ProductModel::class, 'category_id');
     }
+   
 }
