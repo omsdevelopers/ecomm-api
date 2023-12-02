@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\ProductDetailsController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\CartController;
+
 use Laravel\Sanctum\Sanctum;
 
 
@@ -31,6 +33,9 @@ Route::post('/auth/login', [AuthController::class, 'loginUser']);
 Route::apiResources(['products' => ProductDetailsController::class]);
 Route::get('/records', [CategoryController::class, 'index']);
 Route::get('/category/{id}', [CategoryController::class, 'categorys']);
+
+Route::post('/addtocart', [CartController::class, 'addToCart']);
+
 
 
 
