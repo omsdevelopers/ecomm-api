@@ -35,6 +35,8 @@ Route::get('/records', [CategoryController::class, 'index']);
 Route::get('/category/{id}', [CategoryController::class, 'categorys']);
 
 Route::post('/addtocart', [CartController::class, 'addToCart']);
+Route::post('/cartlist', [CartController::class, 'cartList']);
+
 
 
 

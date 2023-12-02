@@ -26,9 +26,9 @@ class CartController extends Controller
         try {
             $productDetails = ProductModel::find($request->input('product_id'));
 
-            if (!$request->input('size')) {
-                return response()->json(['error' => 'Select Size'], 422);
-            }
+            // if (!$request->input('size')) {
+            //     return response()->json(['error' => 'Select Size'], 422);
+            // }
 
             $userId = $request->input('user_id');
 
@@ -66,5 +66,20 @@ class CartController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+    public function cartList(Request $request)
+    {
+        $userId = $request->input('user_id');;
+        $sessionId = $request->input('session_id');;
+
+        if ($userId) {
+            // User is authenticated, retrieve cart for the authenticated user
+            $cartItems = CartModel::where('user_id', $userId)->with('product')->get();
+        } else {
+            // User is a guest, retrieve cart for the guest user based on session ID
+            $cartItems = CartModel::where('session_id', $sessionId)->with('product')->get();
+        }
+
+        return response()->json(['message' => 'Item added to cart successfully', 'cartItem' => $cartItems]);
     }
 }
