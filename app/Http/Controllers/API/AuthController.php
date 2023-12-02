@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+
 class AuthController extends Controller
 {
     public function register(Request $request)
@@ -51,10 +52,10 @@ class AuthController extends Controller
             }
 
             $user = User::where('email', $request->email)->first();
-
             return response()->json([
                 'status' => true,
                 'message' => 'User Logged In Successfully',
+                'userdetails'=> User::where("email", $request->email)->first(),
                 'token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
         } catch (ValidationException $e) {
@@ -67,9 +68,3 @@ class AuthController extends Controller
         }
     }
 }
-//
-//
-//
-//
-//
-//
