@@ -33,7 +33,9 @@ class CartController extends Controller
             $userId = $request->input('user_id');
 
             // For guest users, use session_id consistently
-            $sessionId = $request->session()->getId();
+            // $sessionId = $request->session()->getId();
+            $sessionId = $userId ? null : $request->session()->getId();
+
 
             // Check if the cart item already exists for the given product, size, and session/user
             $existingCartItem = CartModel::where('product_id', $productDetails->id)
