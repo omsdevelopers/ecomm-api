@@ -34,8 +34,8 @@ class CartController extends Controller
 
             // For guest users, use session_id consistently
             // $sessionId = $request->session()->getId();
-            $sessionId = $userId ? null : $request->session()->getId();
-
+            // $sessionId = $userId ? null : $request->session()->getId();
+            $sessionId = $userId ? null : $request->input('session_id');
 
             // Check if the cart item already exists for the given product, size, and session/user
             $existingCartItem = CartModel::where('product_id', $productDetails->id)
@@ -73,15 +73,60 @@ class CartController extends Controller
     {
         $userId = $request->input('user_id');;
         $sessionId = $request->input('session_id');;
+        $cartItems = null;
 
         if ($userId) {
-            // User is authenticated, retrieve cart for the authenticated user
-            $cartItems = CartModel::where('user_id', $userId)->with('product')->get();
+            $cartItems = CartModel::where('user_id', $userId)->with(['product' => function ($query) {
+                $query->select('id', 'name', 'price', 'description', 'price', 'image');  
+            }])
+                ->select('id', 'product_id', 'quantity')
+                ->get();
         } else {
-            // User is a guest, retrieve cart for the guest user based on session ID
-            $cartItems = CartModel::where('session_id', $sessionId)->with('product')->get();
+            $cartItems = CartModel::where('session_id', $sessionId)->with(['product' => function ($query) {
+                $query->select( 'name', 'price', 'description', 'price', 'image');
+            }])
+                ->select('id', 'product_id', 'quantity')
+                ->get();
         }
-
+        $cartItems->transform(function ($cartItem) {
+            return [
+                'id' => $cartItem->id,
+                'product_id' => $cartItem->product_id,
+                'quantity' => $cartItem->quantity,
+                    
+                    'name' => $cartItem->product->name,
+                    'price' => $cartItem->product->price,
+                    'description' => $cartItem->product->description,
+                    'product_image' => $cartItem->product->image ? 'assets/img/about/' . $cartItem->product->image : null,
+                
+            ];
+        });
         return response()->json(['message' => 'Item added to cart successfully', 'cartItem' => $cartItems]);
+    }
+    public function updateCartItem(Request $request, $itemId)
+    {
+        try {
+            $cartItem = CartModel::findOrFail($itemId);
+            // dd($cartItem);
+            // Update the quantity
+            $cartItem->quantity = $request->input('quantity');
+            $cartItem->total = $request->input('total');
+            $cartItem->save();
+            return response()->json(['message' => 'Cart item updated successfully']);
+        } catch (\Exception $e) {
+            // Handle exceptions or errors
+            return response()->json(['error' => 'Error updating cart item'], 500);
+        }
+    }
+    public function deleteCartItem($id)
+    {
+        $cartItem = CartModel::find($id);
+
+        if (!$cartItem) {
+            return response()->json(['error' => 'Item not found'], 404);
+        }
+        $cartItem->delete();
+        // $updatedCart = $this->getUpdatedCartData();
+        return response()->json(['msg' => 'Item deleted successfully'], 404);
     }
 }
