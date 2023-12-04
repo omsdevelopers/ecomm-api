@@ -7,6 +7,8 @@ use App\Http\Controllers\API\ProductDetailsController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\PaymentControllerapi;
+
 
 use Laravel\Sanctum\Sanctum;
 
@@ -36,6 +38,10 @@ Route::get('/category/{id}', [CategoryController::class, 'categorys']);
 
 Route::post('/addtocart', [CartController::class, 'addToCart']);
 Route::post('/cartlist', [CartController::class, 'cartList']);
+Route::post('/updateCartItem/{itemId}', [CartController::class, 'updateCartItem']);
+Route::get('/deleteCartItem/{id}', [CartController::class, 'deleteCartItem']);
+Route::post('/placeorder', [PaymentControllerapi::class, 'placeOrder']);
+
 
 
 
