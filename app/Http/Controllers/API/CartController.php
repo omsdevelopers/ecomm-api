@@ -71,19 +71,19 @@ class CartController extends Controller
     }
     public function cartList(Request $request)
     {
-        $userId = $request->input('user_id');;
-        $sessionId = $request->input('session_id');;
-        $cartItems = null;
+        $userId = $request->input('user_id');
+        $sessionId = $request->input('session_id');
+        
 
         if ($userId) {
             $cartItems = CartModel::where('user_id', $userId)->with(['product' => function ($query) {
-                $query->select('id', 'name', 'price', 'description', 'price', 'image');  
+                $query->select('id', 'name', 'price', 'description', 'image');  
             }])
                 ->select('id', 'product_id', 'quantity')
                 ->get();
         } else {
             $cartItems = CartModel::where('session_id', $sessionId)->with(['product' => function ($query) {
-                $query->select( 'name', 'price', 'description', 'price', 'image');
+                $query->select( 'id','name', 'price', 'description', 'price', 'image');
             }])
                 ->select('id', 'product_id', 'quantity')
                 ->get();
@@ -97,7 +97,7 @@ class CartController extends Controller
                     'name' => $cartItem->product->name,
                     'price' => $cartItem->product->price,
                     'description' => $cartItem->product->description,
-                    'product_image' => $cartItem->product->image ? 'assets/img/about/' . $cartItem->product->image : null,
+                    'product_image' => $cartItem->product->image ? url('/storage/app/public/images') . '/'.$cartItem->product->image : null,
                 
             ];
         });
