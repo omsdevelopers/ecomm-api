@@ -15,13 +15,13 @@ use Razorpay\Api\Api;
 use App\Enums\OrderStatus;
 use App\Enums\PaymentStatus;
 
-class PaymentControllerapi extends Controller
+class PaymentController extends Controller
 {
     public function placeOrder(Request $request)
     {
         try {
-            $api_key = 'rzp_test_hcM7DQGV8Ma7HO';
-            $api_secret = 'HYRxC5jhdBKJkyiaDjn48cVS';
+            $api_key = 'rzp_test_c1ZoPlx69WjEHS';
+            $api_secret = '3irlRvuoYyCqqGAY92I0p6Ds';
             // dd($api_key);
             $api = new Api($api_key, $api_secret);
 
@@ -43,7 +43,7 @@ class PaymentControllerapi extends Controller
                 'key' => $api_key,
                 'amount' => $order->amount,
                 'order_id' => $order->id,
-                'name' => 'NaattuMaadu',
+                'name' => 'Organis',
                 'description' => 'Order Payment',
                 // 'image' => 'path_to_your_logo',
                 'prefill' => [
@@ -83,55 +83,40 @@ class PaymentControllerapi extends Controller
                 'subtotal' => $request->input('subtotal'),
                 'quantity' => $request->input('quantity'),
             ];
-        // Log::error('store : ' . json_encode($input));
+            // Log::error('store : ' . json_encode($input));
 
-            $order = OrderModel::create($orderData);
+            OrderModel::create($orderData);
             // Log::info('API Request: ' . json_encode($request->all()));
             // Log::info('API Response: ' . json_encode($order->json()));
 
-            return response()->json(['message' => 'Item added to cart successfully', 'place_order_details' => $order,'data' => $data]);
-            // return view('web.screens.razorpay', ['data' => $data]);
+
+            return response()->json(['data' => $data, 'order_id' => $order->id]);
         } catch (\Exception $e) {
-            Log::error('API Request Error: ' . $e->getMessage());
-            Log::error($e->getTraceAsString());
-             Log::info('Razorpay API Request: ' . json_encode($orderData));
-            // Handle the exception, e.g., return an error response
-            return response()->json(['error' => 'API Request Error'], 500);
+            Log::error('Error : ' . $e->getMessage());
+
+            return response()->json(['error' => 'Error handling payment'], 500);
         }
     }
     public function store(Request $request)
     {
-        Log::info('store : ' . json_encode($request->all()));
-        
-        // $request->input('razorpay_payment_id');
-        $input = $request->all();
-        $api_key = 'rzp_test_m0Bj5wG8RvRdH1';
-        $api_secret = 'Ck8GBhXDBJU4dvaJ6FVrZCMl';
-        Log::error('store : ' . json_encode($input));
+        try {
+            Log::info('store : ' . json_encode($request->all()));
 
-        $api = new Api($api_key, $api_secret);
 
-        $payment = $api->payment->fetch($input['razorpay_payment_id']);
-        Log::info('Razorpay payment' . json_encode($payment));
+            if (!empty($request->input('razorpay_payment_id'))) {
 
-        if (count($input) && !empty($input['razorpay_payment_id'])) {
-            if ($payment->status === 'captured') {
-                $orderId = $input['razorpay_order_id'];
-                OrderModel::where('order_id', $orderId)->update(['payment_status' => PaymentStatus::PAID]);
+                OrderModel::where('order_id', $request->input('order_id'))->update(['payment_status' => PaymentStatus::PAID]);
                 Log::info('Razorpay Done');
-            } else {
-                // Proceed with capturing the payment
-                try {
-                    $response = $api->payment->capture($input['razorpay_payment_id'], array('amount' => $payment['amount']));
-                } catch (\Exception $e) {
-                    Log::info('Razorpay error : ' . $e->getMessage());
-                    return response()->json(['error' => 'Error handling payment'], 500);
-                }
             }
+
+
+            Alert::success('Success', 'Payment Successful!');
+
+            return response()->json(['data' => 'Payment Successful']);
+        } catch (\Exception $e) {
+            Log::error('Error : ' . $e->getMessage());
+
+            return response()->json(['error' => 'Error handling payment'], 500);
         }
-
-        Alert::success('Success', 'Payment Successful!');
-
-        return redirect()->route('home');
     }
 }

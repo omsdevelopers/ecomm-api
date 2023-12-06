@@ -7,7 +7,7 @@ use App\Http\Controllers\API\ProductDetailsController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\CartController;
-use App\Http\Controllers\Api\PaymentControllerapi;
+use App\Http\Controllers\Api\PaymentController;
 
 
 
@@ -30,7 +30,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('posts', PostController::class)->middleware('auth:sanctum');
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'loginUser']);
 Route::apiResources(['products' => ProductDetailsController::class]);
@@ -41,8 +40,11 @@ Route::post('/addtocart', [CartController::class, 'addToCart']);
 Route::post('/cartlist', [CartController::class, 'cartList']);
 Route::post('/updateCartItem/{itemId}', [CartController::class, 'updateCartItem']);
 Route::get('/deleteCartItem/{id}', [CartController::class, 'deleteCartItem']);
-Route::post('/placeorder', [PaymentControllerapi::class, 'placeOrder']);
-Route::post('/razorpay_payment', [PaymentControllerapi::class, 'store']);
+
+
+
+Route::post('/place-order', [PaymentController::class, 'placeOrder']);
+Route::post('/payment/store', [PaymentController::class, 'store']);
 
 
 
