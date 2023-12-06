@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\PaymentControllerapi;
 
 
+
 use Laravel\Sanctum\Sanctum;
 
 
@@ -41,6 +42,10 @@ Route::post('/cartlist', [CartController::class, 'cartList']);
 Route::post('/updateCartItem/{itemId}', [CartController::class, 'updateCartItem']);
 Route::get('/deleteCartItem/{id}', [CartController::class, 'deleteCartItem']);
 Route::post('/placeorder', [PaymentControllerapi::class, 'placeOrder']);
+Route::post('/razorpay_payment', [PaymentControllerapi::class, 'store']);
+
+
+
 
 
 
