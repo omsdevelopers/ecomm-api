@@ -88,7 +88,7 @@
 
 
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="{{url('admin/dashboard')}}" class="nav-link @if (Request::segment(2)=='dashboard') active @endif">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
@@ -97,8 +97,8 @@
             </p>
           </a>
 
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
           <a href="{{url('/admin/admin/list')}}"
             class="nav-link {{ request()->segment(2) === 'admin' ? 'active' : '' }}">
             <i class="nav-icon fas fa-th"></i>
@@ -107,31 +107,30 @@
 
             </p>
           </a>
-        </li>
+        </li> -->
         <li class="nav-item">
-          <a href="{{url('/admin/category/list')}}"
-            class="nav-link {{ request()->segment(2) === 'catetory' ? 'active' : '' }}">
+          <a href="{{url('/admin/maillist')}}"
+            class="nav-link {{ request()->segment(2) === 'maillist' ? 'active' : '' }}">
             <i class="fa fa-tasks" aria-hidden="true"></i>
 
             <p>
-              Category
+              Message
 
             </p>
           </a>
         </li>
-
         <li class="nav-item">
           <a href="{{route('brand-list')}}"
             class="nav-link {{ request()->segment(2) === 'brand' ? 'active' : '' }}">
             <i class="fa fa-tasks" aria-hidden="true"></i>
 
             <p>
-              Brand
+            SMTP
             </p>
           </a>
-        </li>
+        </li> 
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="{{route('products.index')}}"
             class="nav-link {{ request()->segment(2) === 'products' ? 'active' : '' }}">
             <i class="fa fa-tasks" aria-hidden="true"></i>
@@ -140,9 +139,9 @@
               Product
             </p>
           </a>
-        </li>
+        </li> -->
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="{{route('list-orders')}}"
             class="nav-link {{ request()->segment(2) === 'allOrders' ? 'active' : '' }}">
             <i class="fa fa-tasks" aria-hidden="true"></i>
@@ -151,9 +150,9 @@
               Orders
             </p>
           </a>
-        </li>
+        </li> -->
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="{{route('gallery.index')}}"
             class="nav-link {{ request()->segment(2) === 'gallery' ? 'active' : '' }}">
             <i class="fa fa-tasks" aria-hidden="true"></i>
@@ -162,7 +161,7 @@
               Gallery
             </p>
           </a>
-        </li>
+        </li> -->
 
       </ul>
     </nav>
