@@ -16,12 +16,12 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Category </li>
+              <li class="breadcrumb-item active"> </li>
 
 
 
-              <a href="{{url('admin/category/add')}}" class="btn btn-block btn-primary">
-                Add Category
+              <a href="" class="btn btn-block btn-primary">
+                
             </a>
         </ol>
           </div><!-- /.col -->
@@ -43,7 +43,7 @@
             @include('admin.layouts.message')
         <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Striped Full Width Table</h3>
+              <h3 class="card-title"></h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
@@ -52,15 +52,8 @@
                   <tr>
                     <th style="width: 10px">#</th>
                     <th>Name</th>
-
-                    <th>Slug</th>
-                    <th>Meta Title</th>
-                    <th>Meta Description</th>
-                    <th>Meta Keyword</th>
-                    <th>Created By</th>
-                    <th>Status</th>
-                    <th>Created At</th>
-                    <th>Action</th>
+                    <th>Message</th>
+                    <th>phone</th>
 
                   </tr>
                 </thead>
@@ -70,19 +63,12 @@
                   <tr>
                     <td>{{$value->id}}</td>
                     <td>{{$value->name}}</td>
-                    <td>{{$value->slug}}</td>
-                    <td>{{$value->meta_title}}</td>
-                    <td>{{$value->meta_description}}</td>
-                    <td> {{$value->meta_keyword}}</td>
-                    <td>{{$value->created_by_name}} </td>
-                    <td>{{($value->status==0)? 'Active':'Inactive'}}</td>
-                    {{-- <td>{{date('d/M/Y H:i:s', strtotime($value->created_at))}} & {{date('d/M/Y', strtotime($value->created_at))}}</td> --}}
-                    <td>{{ date('d/M/Y H:i:s', strtotime($value->created_at)) }} </td>
+                    <td>{{$value->msg}}</td>
+                    <td>{{$value->phone}}</td>
 
-                    <td>
-                          <a href="{{url('admin/category/edit/'.$value->id)}}" class="btn  "><i class="fas fa-edit"></i>
-                          </a>
-                          <a onclick="return confirm('Are you sure you want to delete?')" href="{{url('admin/category/delete/'.$value->id)}}" class="btn "><i class="fas fa-trash"></i></a>
+                      <td>
+                          
+                          <a onclick="return confirm('Are you sure you want to delete?')" href="{{url('admin/brand/deletemail/'.$value->id)}}" class="btn "><i class="fas fa-trash"></i></a>
 
                       </td>
                   </tr>

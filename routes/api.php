@@ -35,6 +35,8 @@ Route::post('/auth/login', [AuthController::class, 'loginUser']);
 Route::apiResources(['products' => ProductDetailsController::class]);
 Route::get('/records', [CategoryController::class, 'index']);
 Route::get('/category/{id}', [CategoryController::class, 'categorys']);
+Route::post('/mail', [MailController::class, 'sendUserContact']);
+
 
 Route::post('/addtocart', [CartController::class, 'addToCart']);
 Route::post('/cartlist', [CartController::class, 'cartList']);

@@ -11,17 +11,17 @@
         <div class="container-fluid">
             <div class="row mb-0">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Add Brand</h1>
+                    <h1 class="m-0">Add SMTP</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Brand</li>
+                        <li class="breadcrumb-item active">SMTP</li>
 
 
 
                         <a href="{{route('add-new')}}" class="btn btn-block btn-primary">
-                            Add Brand
+                            Add SMTP
                         </a>
                     </ol>
                 </div><!-- /.col -->
@@ -43,20 +43,24 @@
                     @include('admin.layouts.message')
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Striped Full Width Table</h3>
+                            <h3 class="card-title"></h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body p-0">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th style="width: 10px">#</th>
+                                        
                                         <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Status</th>
-                                        <th>Created At</th>
-                                        <th>Action</th>
-
+                                        <th>Mail Mailer</th>
+                                        <th>Mail Host</th>
+                                        <th>Mail  Port</th>
+                                        <th>Mail Uservame</th>
+                                        <th>Mail Password</th>
+                                        <th>Mail Encryption</th>
+                                        <!-- <th>Mail Address</th>
+                                        <th>Mail From name</th> -->
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -64,14 +68,15 @@
 
                                     <tr>
                                         <td>{{$value->id}}</td>
-                                        <td>{{$value->id}}</td>
-                                        <td>{{$value->name}}</td>
-                                        <td>{{$value->status}}</td>
-                                        <td>{{($value->status==0)? 'Active':'Inactive'}}</td>
-                                        {{-- <td>{{date('d/M/Y H:i:s', strtotime($value->created_at))}} &
-                                            {{date('d/M/Y', strtotime($value->created_at))}}</td> --}}
-                                        <td>{{ date('d/M/Y H:i:s', strtotime($value->created_at)) }} </td>
-
+                                        <td>{{$value->MAIL_MAILER}}</td>
+                                        <td>{{$value->MAIL_HOST}}</td>
+                                        <td>{{$value->MAIL_PORT}}</td>
+                                        <td>{{$value->MAIL_USERNAME}}</td>
+                                        <td>{{$value->MAIL_PASSWORD}}</td>
+                                        <td>{{$value->MAIL_ENCRYPTION}}</td>
+                                        <!-- <td>{{$value->MAIL_FROM_ADDRESS}}</td>
+                                        <td>{{$value->MAIL_FROM_NAME}}</td>       -->
+                                        <td>
                                         <td>
                                             <a href="{{url('admin/brand/edit/'.$value->id)}}" class="btn  "><i
                                                     class="fas fa-edit"></i>
@@ -81,6 +86,8 @@
                                                     class="fas fa-trash"></i></a>
 
                                         </td>
+
+                      </td>                                  
                                     </tr>
                                     @endforeach
 

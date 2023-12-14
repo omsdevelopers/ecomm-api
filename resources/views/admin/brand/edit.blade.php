@@ -35,28 +35,48 @@
                     <!-- jquery validation -->
                     <div class="card card-info">
                         <div class="card-header">
-                            <h3 class="card-title">Add New Brand <small>Page</small></h3>
+                            <h3 class="card-title">Add New Smtp <small>Page</small></h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
                         <form action="" method="post">
                             {{csrf_field()}}
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Name<span style="color:red">*</span></label>
-                                    <input type="text" name="name" class="form-control" id="exampleInputEmail1"
-                                        placeholder="Enter name" value="{{old('name', $getRecord->name)}}" required>
-                                </div>
+                            
 
                                 <div class="form-group">
-                                    <label for="status">Status<span style="color:red">*</span></label>
-                                    <select name="status" class="form-control">
-                                        <option value="0" {{(old('status', $getRecord->status)
-                                            ==0)?'selected':''}}>Active</option>
-                                        <option value="1" {{(old('status', $getRecord->status)
-                                            ==1)?'selected':''}}>Inactive</option>
-                                    </select>
-                                </div>
+                    <label for="exampleInputEmail1">MAIL_MAILER<span style="color:red">*</span></label>
+                    <input type="text" name="MAIL_MAILER" class="form-control" id="exampleInputEmail1" placeholder="MAIL_MAILER" value="{{old('MAIL_MAILER', $getRecord->MAIL_MAILER)}}" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">MAIL_HOST<span style="color:red">*</span></label>
+                    <input type="text" name="MAIL_HOST" class="form-control" id="exampleInputEmail1" placeholder="MAIL_HOST" value="{{old('MAIL_HOST', $getRecord->MAIL_HOST)}}" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">MAIL_PORT<span style="color:red">*</span></label>
+                    <input type="text" name="MAIL_PORT" class="form-control" id="exampleInputEmail1" placeholder="MAIL_PORT" value="{{old('MAIL_PORT', $getRecord->MAIL_PORT)}}" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">MAIL_USERNAME<span style="color:red">*</span></label>
+                    <input type="text" name="MAIL_USERNAME" class="form-control" id="exampleInputEmail1" placeholder="MAIL_USERNAME" value="{{old('MAIL_USERNAME', $getRecord->MAIL_USERNAME)}}" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">MAIL_PASSWORD (Must be single quote)<span style="color:red">*</span></label>
+                    <input type="text" name="MAIL_PASSWORD" class="form-control" id="exampleInputEmail1" placeholder="MAIL_PASSWORD" value="{{old('MAIL_PASSWORD', $getRecord->MAIL_PASSWORD)}}" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">MAIL_ENCRYPTION<span style="color:red">*</span></label>
+                    <input type="text" name="MAIL_ENCRYPTION" class="form-control" id="exampleInputEmail1" placeholder="MAIL_ENCRYPTION" value="{{old('MAIL_ENCRYPTION', $getRecord->MAIL_ENCRYPTION)}}" required>
+                  </div>
+                  <!-- <div class="form-group">
+                    <label for="exampleInputEmail1">MAIL_FROM_ADDRESS<span style="color:red">*</span></label>
+                    <input type="text" name="MAIL_FROM_ADDRESS" class="form-control" id="exampleInputEmail1" placeholder="MAIL_FROM_ADDRESS" value="{{old('MAIL_FROM_ADDRESS', $getRecord->MAIL_FROM_ADDRESS)}}" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">MAIL_FROM_NAME<span style="color:red">*</span></label>
+                    <input type="text" name="MAIL_FROM_NAME" class="form-control" id="exampleInputEmail1" placeholder="MAIL_FROM_NAME" value="{{old('MAIL_FROM_NAME', $getRecord->MAIL_FROM_NAME)}}" required>
+                  </div> -->
+
+                                
 
                             </div>
                             <!-- /.card-body -->
