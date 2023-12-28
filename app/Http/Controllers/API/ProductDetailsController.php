@@ -30,7 +30,7 @@ class ProductDetailsController extends Controller
                     'brand_id' => $product->brand_id,
                     'size' => $product->size,
                     'featured' => $product->featured,
-                    'image' => $product->image ? url('/storage/app/public/images') . '/' . $product->image : null,
+                    'image' => $product->image ? url('/public/images') . '/' . $product->image : null,
                 ];
             });
 
@@ -68,15 +68,15 @@ class ProductDetailsController extends Controller
                     'brand' => $productDetails->brand,
                     'size' => $productDetails->size,
                     'featured' => $productDetails->featured,
-                    'image' => $productDetails->image ? url('/storage/app/public/images') . '/' . $productDetails->image : null,
+                    'image' => $productDetails->image ? url('/public/images') . '/' . $productDetails->image : null,
                 ];
 
                 return response()->json($transformedProductDetails);
             } else {
-                return response()->json(['error' => 'Product not found'], Response::HTTP_NOT_FOUND);
+                return response()->json(['error' => 'Product not found']);
             }
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Internal Server Error'], Response::HTTP_INTERNAL_SERVER_ERROR);
+            return response()->json(['error' => 'Internal Server Error']);
         }
     }
 

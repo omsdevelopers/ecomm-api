@@ -42,7 +42,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form   action="" method="post">
+              <form   action="" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <div class="card-body">
                   <div class="form-group">
@@ -63,6 +63,10 @@
                   <div class="form-group">
                     <label for="exampleInputEmail1">Meta Description<span style="color:red">*</span></label>
                     <textarea type="text" name="meta_description" class="form-control" id="exampleInputEmail1" placeholder="Meta Description" required> {{old('meta_description')}}</textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">category image<span style="color:red">*</span></label>
+                    <input type="file" name="image" class="form-control" id="exampleInputEmail1" placeholder="Slug" value="{{old('image')}}" required>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Meta Keywords<span style="color:red">*</span></label>
