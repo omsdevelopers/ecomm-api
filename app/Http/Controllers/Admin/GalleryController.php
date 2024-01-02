@@ -39,6 +39,7 @@ class GalleryController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images', $imageName); // The file will be stored in storage/app/public/images
             $image->move(public_path('images'), $imageName);
         } else {
             $imageName = null; // Set to null if no image is provided

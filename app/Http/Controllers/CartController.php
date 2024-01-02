@@ -1,10 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
-
-use Illuminate\Support\Facades\Hash;
-
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -128,6 +124,6 @@ class CartController extends Controller
         }
         $cartItem->delete();
         // $updatedCart = $this->getUpdatedCartData();
-        return response()->json(['msg' => 'Item deleted successfully'], 200);
+        return response()->json(['msg' => 'Item deleted successfully'], 404);
     }
 }

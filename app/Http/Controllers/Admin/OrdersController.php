@@ -85,6 +85,7 @@ class OrdersController extends Controller
         $pdf = PDF::loadView('admin.invoice', ['order' => $order, 'products' => $cartItems, 'totalSum' => $totalSum]);
 
 
-        return $pdf->download('invoice.pdf');
+        return $pdf->download("{$order->billing_first_name}_{$order->billing_last_name}.pdf");
+
     }
 }
