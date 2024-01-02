@@ -30,7 +30,7 @@ class ProductDetailsController extends Controller
                     'brand_id' => $product->brand_id,
                     'size' => $product->size,
                     'featured' => $product->featured,
-                    'image' => $product->image ? url('/public/images') . '/' . $product->image : null,
+                    'image' => $product->image ? url('/public/storage/images') . '/' . $product->image : null,
                 ];
             });
 
@@ -68,7 +68,7 @@ class ProductDetailsController extends Controller
                     'brand' => $productDetails->brand,
                     'size' => $productDetails->size,
                     'featured' => $productDetails->featured,
-                    'image' => $productDetails->image ? url('/public/images') . '/' . $productDetails->image : null,
+                    'image' => $productDetails->image ? url('/public/storage/images') . '/' . $productDetails->image : null,
                 ];
 
                 return response()->json($transformedProductDetails);

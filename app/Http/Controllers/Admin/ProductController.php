@@ -37,8 +37,6 @@ class ProductController extends Controller
                 $image = $request->file('image');
                 $imageName = Str::random(20) . '.' . $image->getClientOriginalExtension();
                 $image->storeAs('public/images', $imageName); // The file will be stored in storage/app/public/images
-                $image->move(public_path('images'), $imageName);
-
             } else {
                 $imageName = null; // No image uploaded
             }
