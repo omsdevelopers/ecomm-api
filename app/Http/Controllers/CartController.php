@@ -124,6 +124,6 @@ class CartController extends Controller
         }
         $cartItem->delete();
         // $updatedCart = $this->getUpdatedCartData();
-        return response()->json(['msg' => 'Item deleted successfully'], 404);
+        return response()->json(['msg' => 'Item deleted successfully'], 200);
     }
 }
